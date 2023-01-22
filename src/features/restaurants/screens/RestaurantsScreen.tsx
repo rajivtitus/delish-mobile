@@ -1,6 +1,12 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, StatusBar, View } from "react-native";
-import { Searchbar, useTheme } from "react-native-paper";
+import {
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  View,
+  FlatList,
+} from "react-native";
+import { Searchbar, Divider, useTheme } from "react-native-paper";
 
 import { Theme } from "../../../ts/types/theme";
 import RestaurantInfoCard from "../components/RestaurantInfoCard";
@@ -11,11 +17,10 @@ const restaurant = {
   photos:
     "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=400",
   address: "Chicago",
-  openingHours: "12",
+  isOpenNow: "12",
   rating: 4,
   isClosedTemporarily: false,
 };
-
 const RestaurantsScreen = (): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
@@ -25,9 +30,12 @@ const RestaurantsScreen = (): JSX.Element => {
       <View style={styles.search}>
         <Searchbar value="Boom" />
       </View>
-      <View style={styles.list}>
-        <RestaurantInfoCard restaurant={restaurant} />
-      </View>
+      <FlatList
+        data={[{ name: "1" }, { name: "2" }, { name: "3" }]}
+        renderItem={() => <RestaurantInfoCard restaurant={restaurant} />}
+        keyExtractor={(item) => item.name}
+        ItemSeparatorComponent={<Divider bold />}
+      />
     </SafeAreaView>
   );
 };
@@ -39,10 +47,6 @@ const makeStyles = ({ spacing }: Theme) =>
       paddingTop: StatusBar.currentHeight,
     },
     search: {
-      padding: spacing.lg,
-    },
-    list: {
-      flex: 1,
       padding: spacing.lg,
     },
   });

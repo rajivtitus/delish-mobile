@@ -1,4 +1,8 @@
-import { DefaultTheme } from "react-native-paper";
+import { DefaultTheme, configureFonts } from "react-native-paper";
+
+const fontConfig = {
+  fontFamily: "Lato_400Regular",
+};
 
 const theme = {
   ...DefaultTheme,
@@ -33,6 +37,7 @@ const theme = {
     },
   },
   spacing: {
+    xs: 4,
     sm: 8,
     md: 12,
     lg: 16,
@@ -40,12 +45,19 @@ const theme = {
     xxl: 32,
     xxxl: 48,
   },
+  fontSizes: {
+    title: 22,
+    subtitle: 18,
+    button: 18,
+    body: 16,
+    caption: 14,
+  },
+  fontWeights: {
+    regular: "400",
+    medium: "500",
+    bold: "700",
+  },
+  fonts: configureFonts({ config: fontConfig }),
 };
-
-// export const fonts = {
-//   body: "Oswald_400Regular",
-//   heading: "Lato_400Regular",
-//   monospace: "Oswald_400Regular",
-// };
 
 export default theme;
