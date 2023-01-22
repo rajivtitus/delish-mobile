@@ -15,7 +15,6 @@ interface Props {
 const title = (theme: Theme) => ({
   fontSize: theme.fontSizes.title,
   fontWeight: theme.fontWeights.bold,
-  letterSpacing: 1.15,
 });
 
 const subtitle = (theme: Theme) => ({

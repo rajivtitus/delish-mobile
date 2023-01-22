@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  StatusBar,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { Searchbar, Divider, useTheme } from "react-native-paper";
 
-import { Theme } from "../../../ts/types/theme";
-import RestaurantInfoCard from "../components/RestaurantInfoCard";
+import Layout from "../components/Layout";
+import { Theme } from "../ts/types/theme";
+import RestaurantInfoCard from "../features/restaurants/components/RestaurantInfoCard";
 
 const restaurant = {
   name: "Some Resto",
@@ -21,12 +16,15 @@ const restaurant = {
   rating: 4,
   isClosedTemporarily: false,
 };
+
+const renderDivider = () => <Divider bold />;
+
 const RestaurantsScreen = (): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Layout>
       <View style={styles.search}>
         <Searchbar value="Boom" />
       </View>
@@ -34,18 +32,14 @@ const RestaurantsScreen = (): JSX.Element => {
         data={[{ name: "1" }, { name: "2" }, { name: "3" }]}
         renderItem={() => <RestaurantInfoCard restaurant={restaurant} />}
         keyExtractor={(item) => item.name}
-        ItemSeparatorComponent={<Divider bold />}
+        ItemSeparatorComponent={renderDivider}
       />
-    </SafeAreaView>
+    </Layout>
   );
 };
 
 const makeStyles = ({ spacing }: Theme) =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: StatusBar.currentHeight,
-    },
     search: {
       padding: spacing.lg,
     },

@@ -75,6 +75,7 @@ const makeStyles = ({ colors, spacing }: Theme) =>
     card: {
       backgroundColor: colors.bg.primary,
       padding: spacing.md,
+      borderRadius: 0,
     },
     cover: {
       backgroundColor: colors.bg.primary,
