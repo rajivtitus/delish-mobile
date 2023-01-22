@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { Searchbar, Divider, useTheme } from "react-native-paper";
 
-import Layout from "../components/Layout";
-import { Theme } from "../ts/types/theme";
-import RestaurantInfoCard from "../features/restaurants/components/RestaurantInfoCard";
+import Layout from "../../../components/Layout";
+import { Theme } from "../../../ts/types/theme";
+import RestaurantInfoCard from "../components/RestaurantInfoCard";
 
 const restaurant = {
   name: "Some Resto",

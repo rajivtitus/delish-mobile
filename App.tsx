@@ -12,7 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import theme from "./src/themes/theme";
-import RestaurantsScreen from "./src/screens/RestaurantsScreen";
+import RestaurantsScreen from "./src/features/restaurants/screens/RestaurantsScreen";
 
 type RootTabParamList = {
   Restaurants: undefined;
