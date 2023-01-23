@@ -25,7 +25,7 @@ export const LocationContext = createContext<LocationContext>({
 });
 
 export const LocationProvider = ({ children }: Props): JSX.Element => {
-  const [keyword, setKeyword] = useState("San Francisco");
+  const [keyword, setKeyword] = useState("Toronto");
   const [location, setLocation] = useState<Location | null | undefined>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);

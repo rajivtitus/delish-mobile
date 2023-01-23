@@ -1,4 +1,4 @@
-export const locationMock = {
+export const mockLocation = {
   antwerp: {
     results: [
       {

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const calculateStars = (num: number) => {
-  return Array.from(new Array(Math.round(num)));
+  return Array.from(new Array(Math.ceil(num)));
 };
 
 const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {

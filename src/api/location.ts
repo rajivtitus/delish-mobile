@@ -1,14 +1,14 @@
 const camelize = require("camelize");
 
 import { LocationApiData, Geocode } from "../ts/interfaces/location";
-import { locationMock } from "./mocks/locationMock";
+import { mockLocation } from "./mocks/mockLocation";
 
 export const locationRequest = (
   searchKeyword: string
 ): Promise<LocationApiData> => {
   return new Promise((resolve, reject) => {
     const locationFound =
-      locationMock[searchKeyword as keyof typeof locationMock];
+      mockLocation[searchKeyword as keyof typeof mockLocation];
     if (locationFound) {
       const formattedResponse = camelize(locationFound);
       resolve(formattedResponse);

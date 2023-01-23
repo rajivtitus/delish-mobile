@@ -1,7 +1,8 @@
 const camelize = require("camelize");
 
 import { Restaurant } from "../ts/interfaces/restaurant";
-import { restaurantsMock } from "./mocks/restaurantsMock";
+import { Location } from "../ts/interfaces/location";
+import { mockRestaurants } from "./mocks/mockRestaurants";
 
 type RestaurantInitial = Omit<Restaurant, "isOpenNow" | "isClosedTemporarily">;
 interface RestaurantApiData {
@@ -11,10 +12,20 @@ interface RestaurantApiData {
   status: string;
 }
 
-export const restaurantsRequest = (): Promise<RestaurantApiData> => {
-  return new Promise((resolve, _) => {
-    const formattedResponse = camelize(restaurantsMock);
-    resolve(formattedResponse);
+export const restaurantsRequest = ({
+  lat,
+  lng,
+}: Location): Promise<RestaurantApiData> => {
+  return new Promise((resolve, reject) => {
+    const currentLocation = `${lat},${lng}`;
+    const restaurants =
+      mockRestaurants[currentLocation as keyof typeof mockRestaurants];
+    if (restaurants) {
+      const formattedResponse = camelize(restaurants);
+      resolve(formattedResponse);
+    } else {
+      reject("No restaurants found");
+    }
   });
 };
 
