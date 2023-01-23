@@ -22,8 +22,15 @@ const calculateStars = (num: number) => {
 const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
-  const { name, icon, address, isOpenNow, rating, isClosedTemporarily } =
-    restaurant;
+  const {
+    placeId,
+    name,
+    icon,
+    address,
+    isOpenNow,
+    rating,
+    isClosedTemporarily,
+  } = restaurant;
   const ratingStars = calculateStars(rating);
 
   return (
@@ -43,7 +50,12 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
           <View style={styles.status}>
             <View style={styles.status}>
               {ratingStars.map((_, index) => (
-                <SvgXml xml={star} key={index} height={20} width={20} />
+                <SvgXml
+                  xml={star}
+                  key={`star-${placeId}-${index}`}
+                  height={20}
+                  width={20}
+                />
               ))}
             </View>
             <View style={styles.status}>
@@ -52,7 +64,6 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
                   Closed
                 </Typography>
               )}
-              <Spacer position="left" size="sm" />
               {isOpenNow && <SvgXml xml={open} height={25} width={25} />}
               <Spacer position="left" size="md">
                 <Image style={styles.icon} source={{ uri: icon }} />
@@ -60,7 +71,7 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
             </View>
           </View>
         </Spacer>
-        <Typography variant="body">Chicago</Typography>
+        <Typography variant="caption">{address}</Typography>
       </View>
     </Card>
   );

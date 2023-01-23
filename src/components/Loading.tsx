@@ -9,16 +9,14 @@ const Loading = () => {
   const { colors } = useTheme<Theme>();
 
   return (
-    <Layout>
-      <View style={styles.loading}>
-        <ActivityIndicator
-          style={styles.loading}
-          size={50}
-          animating={true}
-          color={colors.brand.primary}
-        />
-      </View>
-    </Layout>
+    <View style={styles.loading}>
+      <ActivityIndicator
+        style={styles.loading}
+        size={50}
+        animating={true}
+        color={colors.brand.primary}
+      />
+    </View>
   );
 };
 

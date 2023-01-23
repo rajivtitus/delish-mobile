@@ -18,6 +18,7 @@ export interface Restaurant {
   vicinity: string;
 
   //custom props added after receiving data from api
+  address: string;
   isOpenNow: boolean;
   isClosedTemporarily: boolean;
 }

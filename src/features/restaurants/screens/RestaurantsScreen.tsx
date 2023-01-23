@@ -18,19 +18,19 @@ const renderDivider = () => <Divider bold />;
 const RestaurantsScreen = (): JSX.Element => {
   const { restaurants, isLoading } = useRestaurantsContext();
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   return (
     <Layout>
       <Search />
-      <FlatList
-        data={restaurants}
-        renderItem={renderItems}
-        keyExtractor={(item) => item.name}
-        ItemSeparatorComponent={renderDivider}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <FlatList
+          data={restaurants}
+          renderItem={renderItems}
+          keyExtractor={(item) => item.placeId}
+          ItemSeparatorComponent={renderDivider}
+        />
+      )}
     </Layout>
   );
 };

@@ -4,7 +4,10 @@ import { Restaurant } from "../ts/interfaces/restaurant";
 import { Location } from "../ts/interfaces/location";
 import { mockRestaurants } from "./mocks/mockRestaurants";
 
-type RestaurantInitial = Omit<Restaurant, "isOpenNow" | "isClosedTemporarily">;
+type RestaurantInitial = Omit<
+  Restaurant,
+  "address" | "isOpenNow" | "isClosedTemporarily"
+>;
 interface RestaurantApiData {
   htmlAttributions: any[];
   nextPageToken: string;
@@ -22,7 +25,7 @@ export const restaurantsRequest = ({
       mockRestaurants[currentLocation as keyof typeof mockRestaurants];
     if (restaurants) {
       const formattedResponse = camelize(restaurants);
-      resolve(formattedResponse);
+      setTimeout(() => resolve(formattedResponse), 1000);
     } else {
       reject("No restaurants found");
     }
@@ -32,6 +35,7 @@ export const restaurantsRequest = ({
 export const restaurantsTransform = (restaurants: RestaurantInitial[]) => {
   const transformedRestaurants = restaurants.map((restaurant) => ({
     ...restaurant,
+    address: restaurant.vicinity,
     isOpenNow: restaurant.openingHours && restaurant.openingHours.openNow,
     isClosedTemporarily: restaurant.businessStatus === "CLOSED_TEMPORARILY",
   }));
