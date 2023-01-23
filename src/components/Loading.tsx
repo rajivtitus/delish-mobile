@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { ActivityIndicator, useTheme } from "react-native-paper";
 
 import { Theme } from "../ts/types/theme";
-import Layout from "./Layout";
 
 const Loading = () => {
   const { colors } = useTheme<Theme>();

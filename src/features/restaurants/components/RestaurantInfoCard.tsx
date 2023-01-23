@@ -6,8 +6,8 @@ import { SvgXml } from "react-native-svg";
 
 import { Theme } from "../../../ts/types/theme";
 import { Restaurant } from "../../../ts/interfaces/restaurant";
-import star from "../../../../assets/star";
-import open from "../../../../assets/open";
+import star from "../../../../assets/svg/star";
+import open from "../../../../assets/svg/open";
 import Spacer from "../../../components/Spacer";
 import Typography from "../../../components/Typography";
 
