@@ -1,3 +1,5 @@
+import { Geometry } from "./location";
+
 export interface Restaurant {
   businessStatus: string;
   geometry: Geometry;
@@ -14,19 +16,12 @@ export interface Restaurant {
   types: string[];
   userRatingsTotal: number;
   vicinity: string;
+
+  //custom props added after receiving data from api
+  isOpenNow: boolean;
+  isClosedTemporarily: boolean;
 }
-export interface Geometry {
-  location: Location;
-  viewport: Viewport;
-}
-export interface Location {
-  lat: number;
-  lng: number;
-}
-export interface Viewport {
-  northeast: Location;
-  southwest: Location;
-}
+
 export interface Photo {
   height: number;
   htmlAttributions: string[];

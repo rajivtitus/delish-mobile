@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import theme from "./src/themes/theme";
 import { RestaurantsProvider } from "./src/context/RestaurantsContext";
+import { LocationProvider } from "./src/context/LocationContext";
 import RestaurantsScreen from "./src/features/restaurants/screens/RestaurantsScreen";
 
 type RootTabParamList = {
@@ -59,16 +60,18 @@ export default function App(): JSX.Element | null {
 
   return (
     <PaperProvider theme={theme}>
-      <RestaurantsProvider>
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={screenOptions}>
-            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={RestaurantsScreen} />
-            <Tab.Screen name="Settings" component={RestaurantsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
-        <ExpoStatusBar style="auto" />
-      </RestaurantsProvider>
+      <LocationProvider>
+        <RestaurantsProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={screenOptions}>
+              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={RestaurantsScreen} />
+              <Tab.Screen name="Settings" component={RestaurantsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+          <ExpoStatusBar style="auto" />
+        </RestaurantsProvider>
+      </LocationProvider>
     </PaperProvider>
   );
 }

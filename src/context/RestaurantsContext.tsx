@@ -1,11 +1,11 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
-import camelize from "camelize";
 
-import { restaurantsRequest } from "../api/restaurants";
+import { Restaurant } from "../ts/interfaces/restaurant";
+import { restaurantsRequest, restaurantsTransform } from "../api/restaurants";
 
 interface RestaurantsContext {
-  restaurants: string[];
+  restaurants: Restaurant[];
   isLoading: boolean;
   error: string | null | undefined;
 }
@@ -21,15 +21,18 @@ export const RestaurantsContext = createContext<RestaurantsContext>({
 });
 
 export const RestaurantsProvider = ({ children }: Props): JSX.Element => {
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchRestaurants = () => {
+      setIsLoading(true);
       restaurantsRequest()
-        .then((data) => camelize(data))
-        .then((newData) => console.dir(newData));
+        .then(({ results }) => restaurantsTransform(results))
+        .then((res) => setRestaurants(res))
+        .catch((err) => setError(err))
+        .finally(() => setIsLoading(false));
     };
 
     fetchRestaurants();

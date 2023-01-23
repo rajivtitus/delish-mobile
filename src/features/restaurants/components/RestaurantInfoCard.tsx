@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
@@ -12,7 +12,7 @@ import Spacer from "../../../components/Spacer";
 import Typography from "../../../components/Typography";
 
 interface Props {
-  restaurant: any;
+  restaurant: Restaurant;
 }
 
 const calculateStars = (num: number) => {
@@ -22,15 +22,8 @@ const calculateStars = (num: number) => {
 const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
-  const {
-    name,
-    icon,
-    photos,
-    address,
-    isOpenNow,
-    rating,
-    isClosedTemporarily,
-  } = restaurant;
+  const { name, icon, address, isOpenNow, rating, isClosedTemporarily } =
+    restaurant;
   const ratingStars = calculateStars(rating);
 
   return (
@@ -42,7 +35,7 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
         borderBottomLeftRadius={0}
         borderBottomRightRadius={0}
         style={styles.cover}
-        source={{ uri: photos }}
+        source={{ uri: "https://source.unsplash.com/random" }}
       />
       <View style={styles.cardDetails}>
         <Typography variant="title">{name}</Typography>
@@ -54,17 +47,20 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
               ))}
             </View>
             <View style={styles.status}>
-              {!isClosedTemporarily && (
+              {isClosedTemporarily && (
                 <Typography variant="subtitle" style={styles.closedText}>
                   Closed
                 </Typography>
               )}
               <Spacer position="left" size="sm" />
-              {isOpenNow && <SvgXml xml={open} height={20} width={20} />}
+              {isOpenNow && <SvgXml xml={open} height={25} width={25} />}
+              <Spacer position="left" size="md">
+                <Image style={styles.icon} source={{ uri: icon }} />
+              </Spacer>
             </View>
           </View>
         </Spacer>
-        <Typography variant="body">{address}</Typography>
+        <Typography variant="body">Chicago</Typography>
       </View>
     </Card>
   );
@@ -92,6 +88,10 @@ const makeStyles = ({ colors, spacing }: Theme) =>
     closedText: {
       textTransform: "uppercase",
       color: colors.text.error,
+    },
+    icon: {
+      width: 15,
+      height: 15,
     },
   });
 
