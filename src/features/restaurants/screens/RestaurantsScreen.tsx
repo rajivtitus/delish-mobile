@@ -5,6 +5,8 @@ import { Searchbar, Divider, useTheme } from "react-native-paper";
 import Layout from "../../../components/Layout";
 import { Theme } from "../../../ts/types/theme";
 import RestaurantInfoCard from "../components/RestaurantInfoCard";
+import { useRestaurantsContext } from "../../../context/RestaurantsContext";
+import Loading from "../../../components/Loading";
 
 const restaurant = {
   name: "Some Resto",
@@ -20,8 +22,13 @@ const restaurant = {
 const renderDivider = () => <Divider bold />;
 
 const RestaurantsScreen = (): JSX.Element => {
+  const { isLoading } = useRestaurantsContext();
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Layout>
