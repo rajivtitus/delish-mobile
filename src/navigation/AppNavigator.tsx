@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { HomeTabParamList, HomeTabScreenProps } from "../ts/types/navigation";
 import RestaurantsNavigator from "./RestaurantsNavigator";
+import MapScreen from "../features/map/screens/MapScreen";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 
@@ -29,10 +30,6 @@ const screenOptions = ({ route }: HomeTabScreenProps) => {
   };
 };
 
-const Map = () => {
-  return <Text>Map</Text>;
-};
-
 const Settings = () => {
   return <Text>Settings</Text>;
 };
@@ -42,7 +39,7 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={Map} />
+        <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </NavigationContainer>

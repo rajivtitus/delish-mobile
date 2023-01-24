@@ -5,8 +5,8 @@ import { Divider } from "react-native-paper";
 import { useRestaurantsContext } from "../../../context/RestaurantsContext";
 import { Restaurant } from "../../../ts/interfaces/restaurant";
 import Layout from "../../../components/Layout";
-import Search from "../components/Search";
 import Loading from "../../../components/Loading";
+import Search from "../../../components/Search";
 import FlatListItem from "../components/FlatListItem";
 
 const renderDivider = () => <Divider bold />;

@@ -2,10 +2,22 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Searchbar, useTheme } from "react-native-paper";
 
-import { Theme } from "../../../ts/types/theme";
-import { useLocationContext } from "../../../context/LocationContext";
+import { Theme } from "../ts/types/theme";
+import { useLocationContext } from "../context/LocationContext";
 
-const Search = () => {
+interface Props {
+  placeholder?: string;
+  icon?: string;
+  style?: {};
+}
+
+const defaultPlaceholder = "Search for a location";
+
+const Search = ({
+  placeholder = defaultPlaceholder,
+  icon,
+  ...rest
+}: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
   const { keyword, search } = useLocationContext();
@@ -14,10 +26,12 @@ const Search = () => {
   return (
     <View style={styles.search}>
       <Searchbar
-        placeholder="Search for a location"
+        placeholder={placeholder}
         value={searchKeyword}
         onSubmitEditing={() => search(searchKeyword)}
         onChangeText={(text) => setSearchKeyword(text)}
+        icon={icon}
+        {...rest}
       />
     </View>
   );
