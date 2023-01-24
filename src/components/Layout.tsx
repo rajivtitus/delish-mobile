@@ -19,7 +19,7 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: StatusBar.currentHeight,
+      paddingTop: (StatusBar.currentHeight ?? 0) + theme.spacing.lg,
       backgroundColor: theme.colors.bg.primary,
     },
   });
