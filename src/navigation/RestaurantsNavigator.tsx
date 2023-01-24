@@ -14,7 +14,7 @@ const RestaurantsNavigator = () => {
   return (
     <RestaurantStack.Navigator
       screenOptions={{
-        ...TransitionPresets.ModalPresentationIOS,
+        ...TransitionPresets.ModalSlideFromBottomIOS,
         headerShown: false,
       }}
     >

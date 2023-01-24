@@ -1,5 +1,5 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { StackScreenProps } from "@react-navigation/stack";
+import { StackScreenProps, StackNavigationProp } from "@react-navigation/stack";
 
 import { Restaurant } from "../interfaces/restaurant";
 
@@ -20,6 +20,10 @@ export type RestaurantsStackParamList = {
 };
 export type RestaurantsStackParam = "RestaurantsScreen" | "RestaurantDetail";
 export type RestaurantsStackScreenProps = StackScreenProps<
+  RestaurantsStackParamList,
+  RestaurantsStackParam
+>;
+export type RestaurantsStackNavigationProps = StackNavigationProp<
   RestaurantsStackParamList,
   RestaurantsStackParam
 >;
