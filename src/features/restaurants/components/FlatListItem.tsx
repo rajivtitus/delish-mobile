@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { RestaurantsStackNavigationProps } from "../../../ts/types/navigation";
 import { Restaurant } from "../../../ts/interfaces/restaurant";
-import RestaurantInfoCard from "../components/RestaurantInfoCard";
+import RestaurantCard from "./RestaurantCard";
 
 interface Props {
   item: Restaurant;
@@ -19,7 +19,7 @@ const FlatListItem = ({ item }: Props): JSX.Element => {
         navigation.navigate("RestaurantDetail", { restaurant: item })
       }
     >
-      <RestaurantInfoCard restaurant={item} />
+      <RestaurantCard restaurant={item} />
     </TouchableOpacity>
   );
 };

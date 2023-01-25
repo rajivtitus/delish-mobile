@@ -19,7 +19,7 @@ const calculateStars = (num: number) => {
   return Array.from(new Array(Math.ceil(num)));
 };
 
-const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
+const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
   const {
@@ -31,7 +31,7 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
     rating,
     isClosedTemporarily,
   } = restaurant;
-  const ratingStars = calculateStars(rating);
+  const ratingStars = (rating && calculateStars(rating)) || [];
 
   return (
     <Card mode="contained" style={styles.card}>
@@ -106,4 +106,4 @@ const makeStyles = ({ colors, spacing }: Theme) =>
     },
   });
 
-export default RestaurantInfoCard;
+export default RestaurantCard;

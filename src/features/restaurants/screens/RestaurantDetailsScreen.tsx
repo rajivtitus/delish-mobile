@@ -6,7 +6,7 @@ import { List, useTheme } from "react-native-paper";
 import { Theme } from "../../../ts/types/theme";
 import { RestaurantsStackScreenProps } from "../../../ts/types/navigation";
 import Layout from "../../../components/Layout";
-import RestaurantInfoCard from "../components/RestaurantInfoCard";
+import RestaurantCard from "../components/RestaurantCard";
 import Typography from "../../../components/Typography";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -23,7 +23,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
     <Layout>
       {restaurant ? (
         <>
-          <RestaurantInfoCard restaurant={restaurant} />
+          <RestaurantCard restaurant={restaurant} />
           <ScrollView>
             <List.Accordion
               title="Breakfast"

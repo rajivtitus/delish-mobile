@@ -1,12 +1,16 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
 
-import { Location } from "../ts/interfaces/location";
+import { Viewport } from "../ts/interfaces/location";
 import { locationRequest, locationTransform } from "../api/location";
-
+interface Locale {
+  lat: number;
+  lng: number;
+  viewport: Viewport;
+}
 interface LocationContext {
   keyword: string;
-  location: Location | null | undefined;
+  location: Locale | null | undefined;
   isLoading: boolean;
   error: string | null | undefined;
   search: (searchTerm: string) => void;
@@ -26,7 +30,7 @@ export const LocationContext = createContext<LocationContext>({
 
 export const LocationProvider = ({ children }: Props): JSX.Element => {
   const [keyword, setKeyword] = useState("Toronto");
-  const [location, setLocation] = useState<Location | null | undefined>(null);
+  const [location, setLocation] = useState<Locale | null | undefined>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 

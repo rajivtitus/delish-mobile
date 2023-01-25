@@ -19,6 +19,7 @@ export const locationRequest = (
 };
 
 export const locationTransform = (geocode: Geocode) => {
-  const { lat, lng } = geocode.geometry.location;
-  return { lat, lng };
+  const { viewport, location } = geocode.geometry;
+  const { lat, lng } = location;
+  return { lat, lng, viewport };
 };

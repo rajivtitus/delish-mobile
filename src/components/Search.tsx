@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Searchbar, useTheme } from "react-native-paper";
 
@@ -22,6 +22,8 @@ const Search = ({
   const styles = makeStyles(theme);
   const { keyword, search } = useLocationContext();
   const [searchKeyword, setSearchKeyword] = useState(keyword);
+
+  useEffect(() => setSearchKeyword(keyword), [keyword]);
 
   return (
     <View style={styles.search}>
