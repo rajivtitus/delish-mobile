@@ -10,6 +10,7 @@ import star from "../../../../assets/svg/star";
 import open from "../../../../assets/svg/open";
 import Spacer from "../../../components/Spacer";
 import Typography from "../../../components/Typography";
+import Favourite from "../../../components/Favourite";
 
 interface Props {
   restaurant: Restaurant;
@@ -35,6 +36,7 @@ const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
 
   return (
     <Card mode="contained" style={styles.card}>
+      <Favourite restaurant={restaurant} />
       <Card.Cover
         key={name}
         borderTopLeftRadius={0}

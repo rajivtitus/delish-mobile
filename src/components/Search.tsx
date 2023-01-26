@@ -28,11 +28,11 @@ const Search = ({
   return (
     <View style={styles.search}>
       <Searchbar
+        icon={icon}
         placeholder={placeholder}
         value={searchKeyword}
         onSubmitEditing={() => search(searchKeyword)}
         onChangeText={(text) => setSearchKeyword(text)}
-        icon={icon}
         {...rest}
       />
     </View>

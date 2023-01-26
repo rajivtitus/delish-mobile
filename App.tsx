@@ -10,6 +10,7 @@ import {
 import theme from "./src/themes/theme";
 import { RestaurantsProvider } from "./src/context/RestaurantsContext";
 import { LocationProvider } from "./src/context/LocationContext";
+import { FavouritesProvider } from "./src/context/FavouritesContext";
 import AppNavigator from "./src/navigation/AppNavigator";
 
 export default function App(): JSX.Element | null {
@@ -24,12 +25,14 @@ export default function App(): JSX.Element | null {
 
   return (
     <PaperProvider theme={theme}>
-      <LocationProvider>
-        <RestaurantsProvider>
-          <AppNavigator />
-          <ExpoStatusBar style="auto" />
-        </RestaurantsProvider>
-      </LocationProvider>
+      <FavouritesProvider>
+        <LocationProvider>
+          <RestaurantsProvider>
+            <AppNavigator />
+            <ExpoStatusBar style="auto" />
+          </RestaurantsProvider>
+        </LocationProvider>
+      </FavouritesProvider>
     </PaperProvider>
   );
 }
