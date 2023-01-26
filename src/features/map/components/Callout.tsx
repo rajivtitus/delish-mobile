@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Callout = ({ restaurant }: Props) => {
-  return <RestaurantCompactCard restaurant={restaurant} />;
+  return <RestaurantCompactCard restaurant={restaurant} isMap />;
 };
 
 export default Callout;

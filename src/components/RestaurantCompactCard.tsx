@@ -9,9 +9,10 @@ import Typography from "../components/Typography";
 
 interface Props {
   restaurant: Restaurant;
+  isMap?: boolean;
 }
 
-const RestaurantCompactCard = ({ restaurant }: Props) => {
+const RestaurantCompactCard = ({ restaurant, isMap }: Props) => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
   // Redering webview on android as image is not displayed
@@ -20,7 +21,8 @@ const RestaurantCompactCard = ({ restaurant }: Props) => {
 
   return (
     <View style={styles.container}>
-      {isAndroid ? (
+      {/*Display webview only for Google maps*/}
+      {isAndroid && isMap ? (
         <View style={[styles.webView, styles.image]}>
           <WebView
             resizeMode="cover"

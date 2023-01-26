@@ -1,5 +1,6 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Restaurant } from "../ts/interfaces/restaurant";
 
@@ -28,6 +29,27 @@ export const FavouritesProvider = ({ children }: Props): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 
+  const saveFavourites = async (value: Restaurant[]) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@favourites", jsonValue);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const loadFavourites = async () => {
+    try {
+      const value = await AsyncStorage.getItem("@favourites");
+      if (value) {
+        const parsedValue = JSON.parse(value);
+        setFavourites(parsedValue);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const addFavourite = (restaurant: Restaurant) => {
     setFavourites((prevFavourites) => [...prevFavourites, restaurant]);
   };
@@ -38,6 +60,14 @@ export const FavouritesProvider = ({ children }: Props): JSX.Element => {
     );
     setFavourites(newFavourites);
   };
+
+  useEffect(() => {
+    loadFavourites();
+  }, []);
+
+  useEffect(() => {
+    saveFavourites(favourites);
+  }, [favourites]);
 
   return (
     <FavouritesContext.Provider

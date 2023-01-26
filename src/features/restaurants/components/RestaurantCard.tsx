@@ -39,10 +39,10 @@ const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
       <Favourite restaurant={restaurant} />
       <Card.Cover
         key={name}
-        borderTopLeftRadius={0}
-        borderTopRightRadius={0}
-        borderBottomLeftRadius={0}
-        borderBottomRightRadius={0}
+        borderTopLeftRadius={5}
+        borderTopRightRadius={5}
+        borderBottomLeftRadius={5}
+        borderBottomRightRadius={5}
         style={styles.cover}
         source={{ uri: "https://source.unsplash.com/random" }}
       />
