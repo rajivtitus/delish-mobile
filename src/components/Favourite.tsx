@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-import { useFavouritesContext } from "../context/FavouritesContext";
+import { useFavouritesContext } from "../services/context/FavouritesContext";
 import { Restaurant } from "../ts/interfaces/restaurant";
 
 interface Props {

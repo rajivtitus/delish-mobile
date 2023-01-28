@@ -2,14 +2,14 @@ import React from "react";
 import { FlatList, ListRenderItem } from "react-native";
 import { Divider } from "react-native-paper";
 
-import { useRestaurantsContext } from "../../../context/RestaurantsContext";
-import { useFavouritesContext } from "../../../context/FavouritesContext";
-import { Restaurant } from "../../../ts/interfaces/restaurant";
-import Layout from "../../../components/Layout";
-import Loading from "../../../components/Loading";
-import Search from "../../../components/Search";
-import FlatListItem from "../components/FlatListItem";
-import FavouritesBar from "../../../components/FavouritesBar";
+import { useRestaurantsContext } from "../../services/context/RestaurantsContext";
+import { useFavouritesContext } from "../../services/context/FavouritesContext";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import Layout from "../../components/Layout";
+import Loading from "../../components/Loading";
+import Search from "../../components/Search";
+import FlatListItem from "../../components/restaurants/FlatListItem";
+import FavouritesBar from "../../components/FavouritesBar";
 
 const renderDivider = () => <Divider bold />;
 

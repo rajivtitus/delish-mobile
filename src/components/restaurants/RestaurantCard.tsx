@@ -4,13 +4,13 @@ import { Card } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
-import { Theme } from "../../../ts/types/theme";
-import { Restaurant } from "../../../ts/interfaces/restaurant";
-import star from "../../../../assets/svg/star";
-import open from "../../../../assets/svg/open";
-import Spacer from "../../../components/Spacer";
-import Typography from "../../../components/Typography";
-import Favourite from "../../../components/Favourite";
+import { Theme } from "../../ts/types/theme";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import star from "../../../assets/svg/star";
+import open from "../../../assets/svg/open";
+import Spacer from "../../components/Spacer";
+import Typography from "../../components/Typography";
+import Favourite from "../../components/Favourite";
 
 interface Props {
   restaurant: Restaurant;

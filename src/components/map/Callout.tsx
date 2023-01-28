@@ -1,8 +1,8 @@
 import React from "react";
 
-import RestaurantCompactCard from "../../../components/RestaurantCompactCard";
+import RestaurantCompactCard from "../../components/RestaurantCompactCard";
 
-import { Restaurant } from "../../../ts/interfaces/restaurant";
+import { Restaurant } from "../../ts/interfaces/restaurant";
 
 interface Props {
   restaurant: Restaurant;

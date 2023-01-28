@@ -2,7 +2,7 @@ import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Restaurant } from "../ts/interfaces/restaurant";
+import { Restaurant } from "../../ts/interfaces/restaurant";
 
 interface FavouritesContext {
   favourites: Restaurant[];

@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { HomeTabParamList, HomeTabScreenProps } from "../ts/types/navigation";
 import RestaurantsNavigator from "./RestaurantsNavigator";
-import MapScreen from "../features/map/screens/MapScreen";
+import MapScreen from "../screens/map/MapScreen";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 

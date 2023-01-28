@@ -1,7 +1,7 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
 
-import { Viewport } from "../ts/interfaces/location";
+import { Viewport } from "../../ts/interfaces/location";
 import { locationRequest, locationTransform } from "../api/location";
 interface Locale {
   lat: number;

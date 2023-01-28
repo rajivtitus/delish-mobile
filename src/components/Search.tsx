@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Searchbar, useTheme } from "react-native-paper";
 
 import { Theme } from "../ts/types/theme";
-import { useLocationContext } from "../context/LocationContext";
+import { useLocationContext } from "../services/context/LocationContext";
 
 interface Props {
   placeholder?: string;

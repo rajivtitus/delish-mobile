@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { List, useTheme } from "react-native-paper";
 
-import { Theme } from "../../../ts/types/theme";
-import { RestaurantsStackScreenProps } from "../../../ts/types/navigation";
-import Layout from "../../../components/Layout";
-import RestaurantCard from "../components/RestaurantCard";
-import Typography from "../../../components/Typography";
+import { Theme } from "../../ts/types/theme";
+import { RestaurantsStackScreenProps } from "../../ts/types/navigation";
+import Layout from "../../components/Layout";
+import RestaurantCard from "../../components/restaurants/RestaurantCard";
+import Typography from "../../components/Typography";
 import { ScrollView } from "react-native-gesture-handler";
 
 const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {

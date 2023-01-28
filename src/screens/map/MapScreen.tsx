@@ -3,11 +3,11 @@ import MapView, { MapMarker, MapCallout } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { RestaurantsStackNavigationProps } from "../../../ts/types/navigation";
-import { useRestaurantsContext } from "../../../context/RestaurantsContext";
-import { useLocationContext } from "../../../context/LocationContext";
-import Search from "../../../components/Search";
-import Callout from "../components/Callout";
+import { RestaurantsStackNavigationProps } from "../../ts/types/navigation";
+import { useRestaurantsContext } from "../../services/context/RestaurantsContext";
+import { useLocationContext } from "../../services/context/LocationContext";
+import Search from "../../components/Search";
+import Callout from "../../components/map/Callout";
 
 const MapScreen = () => {
   const [latDelta, setLatDelta] = useState(0);

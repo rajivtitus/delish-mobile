@@ -1,8 +1,8 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
 
-import { Restaurant } from "../ts/interfaces/restaurant";
-import { Location } from "../ts/interfaces/location";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import { Location } from "../../ts/interfaces/location";
 import { restaurantsRequest, restaurantsTransform } from "../api/restaurants";
 import { useLocationContext } from "./LocationContext";
 

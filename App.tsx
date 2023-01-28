@@ -8,9 +8,9 @@ import {
 } from "@expo-google-fonts/lato";
 
 import theme from "./src/themes/theme";
-import { RestaurantsProvider } from "./src/context/RestaurantsContext";
-import { LocationProvider } from "./src/context/LocationContext";
-import { FavouritesProvider } from "./src/context/FavouritesContext";
+import { RestaurantsProvider } from "./src/services/context/RestaurantsContext";
+import { LocationProvider } from "./src/services/context/LocationContext";
+import { FavouritesProvider } from "./src/services/context/FavouritesContext";
 import AppNavigator from "./src/navigation/AppNavigator";
 
 export default function App(): JSX.Element | null {
