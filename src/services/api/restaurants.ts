@@ -1,7 +1,7 @@
 const camelize = require("camelize");
 
-import { Restaurant } from "../ts/interfaces/restaurant";
-import { Location } from "../ts/interfaces/location";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import { Location } from "../../ts/interfaces/location";
 import { mockRestaurants } from "./mocks/mockRestaurants";
 
 type RestaurantInitial = Omit<

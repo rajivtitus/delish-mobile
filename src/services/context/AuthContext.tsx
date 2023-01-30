@@ -1,10 +1,16 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
+import { getAuth, User, AuthError } from "firebase/auth";
+
+import loginRequest from "../api/login";
+import registerRequest from "../api/register";
 
 interface AuthContext {
-  user: {};
+  user: User | null | undefined;
   isLoading: boolean;
-  error: string | null | undefined;
+  error: AuthError | null | undefined;
+  onLogin: (email: string, password: string) => void;
+  onRegister: (email: string, password: string) => void;
 }
 
 interface Props {
@@ -12,15 +18,47 @@ interface Props {
 }
 
 export const AuthContext = createContext<AuthContext>({
-  user: "",
+  user: null,
   isLoading: false,
   error: null,
+  onLogin: () => null,
+  onRegister: () => null,
 });
 
 export const AuthProvider = ({ children }: Props): JSX.Element => {
-  const [user, setUser] = useState<{}>({});
+  const [user, setUser] = useState<User | null | undefined>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<AuthError | null | undefined>(null);
+  const auth = getAuth();
+
+  const onLogin = (email: string, password: string) => {
+    setIsLoading(true);
+    loginRequest({ auth, email, password })
+      .then((res) => setUser(res.user))
+      .catch((err) => setError(err))
+      .finally(() => setIsLoading(false));
+  };
+
+  const onRegister = (email: string, password: string) => {
+    setIsLoading(true);
+    registerRequest({ auth, email, password })
+      .then((res) => setUser(res.user))
+      .catch((err) => setError(err))
+      .finally(() => setIsLoading(false));
+  };
+
+  //clear error state after a few seconds
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (error) {
+      timeout = setTimeout(() => {
+        setError(null);
+      }, 5000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [error]);
 
   return (
     <AuthContext.Provider
@@ -28,6 +66,8 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
         user,
         isLoading,
         error,
+        onLogin,
+        onRegister,
       }}
     >
       {children}

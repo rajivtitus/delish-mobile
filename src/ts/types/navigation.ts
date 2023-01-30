@@ -27,3 +27,13 @@ export type RestaurantsStackNavigationProps = StackNavigationProp<
   RestaurantsStackParamList,
   RestaurantsStackParam
 >;
+
+export type AccountStackParamList = {
+  Login: undefined;
+  Register: undefined;
+};
+export type AccountStackParam = "Register" | "Login";
+export type AccountStackNavigationProps = StackNavigationProp<
+  AccountStackParamList,
+  AccountStackParam
+>;

@@ -7,11 +7,13 @@ import {
   Lato_700Bold,
 } from "@expo-google-fonts/lato";
 
+import "./src/utils/firebase";
 import theme from "./src/themes/theme";
 import { RestaurantsProvider } from "./src/services/context/RestaurantsContext";
 import { LocationProvider } from "./src/services/context/LocationContext";
 import { FavouritesProvider } from "./src/services/context/FavouritesContext";
-import AppNavigator from "./src/navigation/AppNavigator";
+import { AuthProvider } from "./src/services/context/AuthContext";
+import RootNavigator from "./src/navigation/RootNavigator";
 
 export default function App(): JSX.Element | null {
   const [fontsLoaded] = useFonts({
@@ -25,14 +27,16 @@ export default function App(): JSX.Element | null {
 
   return (
     <PaperProvider theme={theme}>
-      <FavouritesProvider>
-        <LocationProvider>
-          <RestaurantsProvider>
-            <AppNavigator />
-            <ExpoStatusBar style="auto" />
-          </RestaurantsProvider>
-        </LocationProvider>
-      </FavouritesProvider>
+      <AuthProvider>
+        <FavouritesProvider>
+          <LocationProvider>
+            <RestaurantsProvider>
+              <RootNavigator />
+              <ExpoStatusBar style="auto" />
+            </RestaurantsProvider>
+          </LocationProvider>
+        </FavouritesProvider>
+      </AuthProvider>
     </PaperProvider>
   );
 }

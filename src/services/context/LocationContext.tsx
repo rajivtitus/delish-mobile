@@ -13,7 +13,7 @@ interface LocationContext {
   location: Locale | null | undefined;
   isLoading: boolean;
   error: string | null | undefined;
-  search: (searchTerm: string) => void;
+  onSearch: (searchTerm: string) => void;
 }
 
 interface Props {
@@ -25,7 +25,7 @@ export const LocationContext = createContext<LocationContext>({
   location: null,
   isLoading: false,
   error: null,
-  search: () => null,
+  onSearch: () => null,
 });
 
 export const LocationProvider = ({ children }: Props): JSX.Element => {
@@ -55,7 +55,7 @@ export const LocationProvider = ({ children }: Props): JSX.Element => {
         location,
         isLoading,
         error,
-        search: onSearch,
+        onSearch,
       }}
     >
       {children}

@@ -25,12 +25,12 @@ const Favourite = ({ restaurant }: Props) => {
   const isFavourite = favourites.find((f) => f.placeId === restaurant.placeId);
   const icon = isFavourite ? favIcon.filled : favIcon.outlined;
 
-  const handleOnPress = () => {
+  const handleFavourite = () => {
     isFavourite ? removeFavourite(restaurant) : addFavourite(restaurant);
   };
 
   return (
-    <TouchableOpacity style={styles.favourite} onPress={handleOnPress}>
+    <TouchableOpacity style={styles.favourite} onPress={handleFavourite}>
       <AntDesign name={icon.name} size={24} color={icon.color} />
     </TouchableOpacity>
   );

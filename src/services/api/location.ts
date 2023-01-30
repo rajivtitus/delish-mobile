@@ -1,6 +1,6 @@
 const camelize = require("camelize");
 
-import { LocationApiData, Geocode } from "../ts/interfaces/location";
+import { LocationApiData, Geocode } from "../../ts/interfaces/location";
 import { mockLocation } from "./mocks/mockLocation";
 
 export const locationRequest = (

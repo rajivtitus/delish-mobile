@@ -20,7 +20,7 @@ const Search = ({
 }: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
-  const { keyword, search } = useLocationContext();
+  const { keyword, onSearch } = useLocationContext();
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
   useEffect(() => setSearchKeyword(keyword), [keyword]);
@@ -31,7 +31,7 @@ const Search = ({
         icon={icon}
         placeholder={placeholder}
         value={searchKeyword}
-        onSubmitEditing={() => search(searchKeyword)}
+        onSubmitEditing={() => onSearch(searchKeyword)}
         onChangeText={(text) => setSearchKeyword(text)}
         {...rest}
       />

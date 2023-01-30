@@ -8,25 +8,22 @@ import { RestaurantsStackParamList } from "../ts/types/navigation";
 import RestaurantsScreen from "../screens/restaurants/RestaurantsScreen";
 import RestaurantDetailsScreen from "../screens/restaurants/RestaurantDetailsScreen";
 
-const RestaurantStack = createStackNavigator<RestaurantsStackParamList>();
+const Stack = createStackNavigator<RestaurantsStackParamList>();
 
 const RestaurantsNavigator = () => {
   return (
-    <RestaurantStack.Navigator
+    <Stack.Navigator
       screenOptions={{
         ...TransitionPresets.ModalSlideFromBottomIOS,
         headerShown: false,
       }}
     >
-      <RestaurantStack.Screen
-        name="RestaurantsScreen"
-        component={RestaurantsScreen}
-      />
-      <RestaurantStack.Screen
+      <Stack.Screen name="RestaurantsScreen" component={RestaurantsScreen} />
+      <Stack.Screen
         name="RestaurantDetail"
         component={RestaurantDetailsScreen}
       />
-    </RestaurantStack.Navigator>
+    </Stack.Navigator>
   );
 };
 
