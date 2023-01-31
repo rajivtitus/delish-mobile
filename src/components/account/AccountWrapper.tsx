@@ -63,7 +63,7 @@ const makeStyles = (theme: Theme) =>
     },
     title: {
       fontSize: 42,
-      color: theme.colors.brand.primary,
+      color: theme.colors.primary,
     },
     formContainer: {
       maxWidth: 325,

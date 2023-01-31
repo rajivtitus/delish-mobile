@@ -1,20 +1,11 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { ActivityIndicator, useTheme } from "react-native-paper";
-
-import { Theme } from "../ts/types/theme";
+import { ActivityIndicator } from "react-native-paper";
 
 const Loading = () => {
-  const { colors } = useTheme<Theme>();
-
   return (
     <View style={styles.loading}>
-      <ActivityIndicator
-        style={styles.loading}
-        size={50}
-        animating={true}
-        color={colors.brand.primary}
-      />
+      <ActivityIndicator style={styles.loading} size={50} animating={true} />
     </View>
   );
 };

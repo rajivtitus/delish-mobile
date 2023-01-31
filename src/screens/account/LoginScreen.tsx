@@ -17,6 +17,7 @@ const LoginScreen = () => {
 
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
+  const { colors } = theme;
   const navigation = useNavigation<AccountStackNavigationProps>();
 
   const handleLogin = () => {
@@ -35,6 +36,7 @@ const LoginScreen = () => {
           keyboardType="email-address"
           autoComplete="email"
           autoCapitalize="none"
+          activeUnderlineColor={colors.text.secondary}
           onChangeText={(text) => setEmail(text)}
         />
       </Spacer>
@@ -45,6 +47,7 @@ const LoginScreen = () => {
           textContentType="password"
           autoCapitalize="none"
           secureTextEntry
+          activeUnderlineColor={colors.text.secondary}
           onChangeText={(text) => setPassword(text)}
         />
       </Spacer>
@@ -67,7 +70,6 @@ const LoginScreen = () => {
         <Button
           icon="mail"
           mode="contained"
-          buttonColor={theme.colors.brand.primary}
           onPress={handleLogin}
           style={styles.button}
           loading={isLoading}

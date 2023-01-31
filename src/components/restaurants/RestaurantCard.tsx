@@ -100,7 +100,7 @@ const makeStyles = ({ colors, spacing }: Theme) =>
     },
     closedText: {
       textTransform: "uppercase",
-      color: colors.text.error,
+      color: colors.error,
     },
     icon: {
       width: 15,

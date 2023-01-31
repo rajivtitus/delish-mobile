@@ -18,6 +18,7 @@ const RegisterScreen = () => {
 
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
+  const { colors } = theme;
   const navigation = useNavigation<AccountStackNavigationProps>();
 
   const handleRegister = () => {
@@ -36,6 +37,7 @@ const RegisterScreen = () => {
           keyboardType="email-address"
           autoComplete="email"
           autoCapitalize="none"
+          activeUnderlineColor={colors.text.secondary}
           onChangeText={(text) => setEmail(text)}
         />
       </Spacer>
@@ -46,6 +48,7 @@ const RegisterScreen = () => {
           textContentType="password"
           autoCapitalize="none"
           secureTextEntry
+          activeUnderlineColor={colors.text.secondary}
           onChangeText={(text) => setPassword(text)}
         />
       </Spacer>
@@ -56,6 +59,7 @@ const RegisterScreen = () => {
           textContentType="password"
           autoCapitalize="none"
           secureTextEntry
+          activeUnderlineColor={colors.text.secondary}
           onChangeText={(text) => setRepeatedPassword(text)}
         />
       </Spacer>
@@ -78,7 +82,6 @@ const RegisterScreen = () => {
         <Button
           icon="mail"
           mode="contained"
-          buttonColor={theme.colors.brand.primary}
           style={styles.button}
           onPress={handleRegister}
           loading={isLoading}
