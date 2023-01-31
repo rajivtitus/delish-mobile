@@ -10,11 +10,14 @@ import Loading from "../../components/Loading";
 import Search from "../../components/Search";
 import FlatListItem from "../../components/restaurants/FlatListItem";
 import FavouritesBar from "../../components/FavouritesBar";
+import FadeInView from "../../components/animations/FadeInView";
 
 const renderDivider = () => <Divider bold />;
 
 const renderItems: ListRenderItem<Restaurant> = ({ item }) => (
-  <FlatListItem item={item} />
+  <FadeInView>
+    <FlatListItem item={item} />
+  </FadeInView>
 );
 
 const renderHeader = (favourites: Restaurant[]) => {
