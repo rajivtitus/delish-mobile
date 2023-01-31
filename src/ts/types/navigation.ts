@@ -15,10 +15,10 @@ export type HomeTabScreenProps = BottomTabScreenProps<
 >;
 
 export type RestaurantsStackParamList = {
-  RestaurantsScreen: undefined;
-  RestaurantDetail: { restaurant: Restaurant };
+  "Restaurants List": undefined;
+  "Restaurant Details": { restaurant: Restaurant };
 };
-export type RestaurantsStackParam = "RestaurantsScreen" | "RestaurantDetail";
+export type RestaurantsStackParam = "Restaurants List" | "Restaurant Details";
 export type RestaurantsStackScreenProps = StackScreenProps<
   RestaurantsStackParamList,
   RestaurantsStackParam
@@ -39,10 +39,10 @@ export type AccountStackNavigationProps = StackNavigationProp<
 >;
 
 export type SettingsStackParamList = {
-  SettingsScreen: undefined;
+  "Account Settings": undefined;
   Favourites: undefined;
 };
-export type SettingsStackParam = "SettingsScreen" | "Favourites";
+export type SettingsStackParam = "Account Settings" | "Favourites";
 export type SettingsStackNavigationProps = StackNavigationProp<
   SettingsStackParamList,
   SettingsStackParam

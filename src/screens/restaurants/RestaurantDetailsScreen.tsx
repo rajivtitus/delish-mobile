@@ -1,15 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { List, Button, useTheme } from "react-native-paper";
+import { List, useTheme } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 
 import { Theme } from "../../ts/types/theme";
 import { RestaurantsStackScreenProps } from "../../ts/types/navigation";
 import Layout from "../../components/Layout";
 import RestaurantCard from "../../components/restaurants/RestaurantCard";
-import Spacer from "../../components/Spacer";
 import AlternateText from "../../components/AlternateText";
 
 const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
@@ -20,20 +18,9 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
   const [isDrinksOpen, setIsDrinksOpen] = useState<boolean>(false);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
-  const navigation = useNavigation();
 
   return (
     <Layout>
-      <Spacer position="left" size="lg">
-        <Button
-          labelStyle={styles.mediumText}
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          Back
-        </Button>
-      </Spacer>
-
       {restaurant ? (
         <>
           <RestaurantCard restaurant={restaurant} />

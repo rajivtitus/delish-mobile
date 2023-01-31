@@ -9,12 +9,12 @@ const Stack = createStackNavigator<SettingsStackParamList>();
 
 const SettingsNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Account Settings"
+        component={SettingsScreen}
+        options={{ header: () => null }}
+      />
       <Stack.Screen name="Favourites" component={FavouritesScreen} />
     </Stack.Navigator>
   );

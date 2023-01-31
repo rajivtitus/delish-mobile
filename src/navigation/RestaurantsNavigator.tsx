@@ -15,12 +15,16 @@ const RestaurantsNavigator = () => {
     <Stack.Navigator
       screenOptions={{
         ...TransitionPresets.ModalSlideFromBottomIOS,
-        headerShown: false,
+        headerMode: "screen",
       }}
     >
-      <Stack.Screen name="RestaurantsScreen" component={RestaurantsScreen} />
       <Stack.Screen
-        name="RestaurantDetail"
+        name="Restaurants List"
+        component={RestaurantsScreen}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="Restaurant Details"
         component={RestaurantDetailsScreen}
       />
     </Stack.Navigator>
