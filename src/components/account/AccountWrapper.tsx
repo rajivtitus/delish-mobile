@@ -1,8 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { useState, ReactElement } from "react";
 import { StyleSheet, ImageBackground, Image, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
 import { Theme } from "../../ts/types/theme";
+import Loading from "../Loading";
 import Spacer from "../Spacer";
 import Typography from "../Typography";
 
@@ -14,28 +15,41 @@ interface Props {
 }
 
 const AccountWrapper = ({ children }: Props) => {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
   return (
-    <ImageBackground
-      source={{ uri: homeUri }}
-      resizeMode="cover"
-      style={styles.background}
-    >
-      <View style={styles.overlay} />
-      <Spacer position="bottom" size="xl">
-        <Typography variant="title" style={styles.title}>
-          Delish
-        </Typography>
-      </Spacer>
-      <View style={styles.formContainer}>{children}</View>
-    </ImageBackground>
+    <View style={styles.container}>
+      <ImageBackground
+        source={{ uri: homeUri }}
+        resizeMode="cover"
+        style={styles.background}
+        onLoad={() => setIsImageLoaded(true)}
+      >
+        {isImageLoaded ? (
+          <>
+            <View style={styles.overlay} />
+            <Spacer position="bottom" size="xl">
+              <Typography variant="title" style={styles.title}>
+                Delish
+              </Typography>
+            </Spacer>
+            <View style={styles.formContainer}>{children}</View>
+          </>
+        ) : (
+          <Loading />
+        )}
+      </ImageBackground>
+    </View>
   );
 };
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
+    container: {
+      flex: 1,
+    },
     background: {
       flex: 1,
       alignItems: "center",
