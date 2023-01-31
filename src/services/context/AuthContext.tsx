@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useContext, createContext } from "react";
-import { getAuth, User, AuthError } from "firebase/auth";
+import { getAuth, User } from "firebase/auth";
 
 import loginRequest from "../api/login";
 import registerRequest from "../api/register";
@@ -8,9 +8,13 @@ import registerRequest from "../api/register";
 interface AuthContext {
   user: User | null | undefined;
   isLoading: boolean;
-  error: AuthError | null | undefined;
+  error: string | null | undefined;
   onLogin: (email: string, password: string) => void;
-  onRegister: (email: string, password: string) => void;
+  onRegister: (
+    email: string,
+    password: string,
+    repeatedPassword: string
+  ) => void;
 }
 
 interface Props {
@@ -28,22 +32,30 @@ export const AuthContext = createContext<AuthContext>({
 export const AuthProvider = ({ children }: Props): JSX.Element => {
   const [user, setUser] = useState<User | null | undefined>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<AuthError | null | undefined>(null);
+  const [error, setError] = useState<string | null | undefined>(null);
   const auth = getAuth();
 
   const onLogin = (email: string, password: string) => {
     setIsLoading(true);
     loginRequest({ auth, email, password })
       .then((res) => setUser(res.user))
-      .catch((err) => setError(err))
+      .catch((err) => setError(err.code))
       .finally(() => setIsLoading(false));
   };
 
-  const onRegister = (email: string, password: string) => {
+  const onRegister = (
+    email: string,
+    password: string,
+    repeatedPassword: string
+  ) => {
+    if (password !== repeatedPassword) {
+      setError("Passwords do not match");
+      return;
+    }
     setIsLoading(true);
     registerRequest({ auth, email, password })
       .then((res) => setUser(res.user))
-      .catch((err) => setError(err))
+      .catch((err) => setError(err.code))
       .finally(() => setIsLoading(false));
   };
 

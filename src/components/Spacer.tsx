@@ -6,7 +6,7 @@ import { Theme } from "../ts/types/theme";
 
 type Position = "top" | "right" | "bottom" | "left" | "vertical" | "horizontal";
 
-type Size = "xs" | "sm" | "md" | "lg";
+type Size = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 
 interface Props {
   position: Position;

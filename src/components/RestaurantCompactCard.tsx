@@ -36,9 +36,7 @@ const RestaurantCompactCard = ({ restaurant, isMap }: Props) => {
           source={{ uri: "https://source.unsplash.com/random" }}
         />
       )}
-      <Typography style={styles.title} variant="body">
-        {restaurant.name}
-      </Typography>
+      <Typography style={styles.title}>{restaurant.name}</Typography>
     </View>
   );
 };

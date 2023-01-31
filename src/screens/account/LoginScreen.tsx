@@ -56,7 +56,7 @@ const LoginScreen = () => {
             type="error"
             visible={Boolean(error)}
           >
-            Error: {error.code}
+            Error: {error}
           </HelperText>
         </Spacer>
       ) : (
@@ -65,7 +65,7 @@ const LoginScreen = () => {
 
       <Spacer position="bottom" size="sm">
         <Button
-          icon="lock-open-outline"
+          icon="mail"
           mode="contained"
           buttonColor={theme.colors.brand.primary}
           onPress={handleLogin}
@@ -77,7 +77,7 @@ const LoginScreen = () => {
         </Button>
       </Spacer>
       <View style={styles.formFooter}>
-        <Typography variant="body">Don't have an account?</Typography>
+        <Typography>Don't have an account?</Typography>
         <Button
           labelStyle={styles.link}
           onPress={() => navigation.navigate("Register")}

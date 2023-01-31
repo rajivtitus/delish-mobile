@@ -13,6 +13,7 @@ import Spacer from "../../components/Spacer";
 const RegisterScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [repeatedPassword, setRepeatedPassword] = useState<string>("");
   const { onRegister, isLoading, error } = useAuthContext();
 
   const theme = useTheme<Theme>();
@@ -20,8 +21,8 @@ const RegisterScreen = () => {
   const navigation = useNavigation<AccountStackNavigationProps>();
 
   const handleRegister = () => {
-    if (email && password) {
-      onRegister(email, password);
+    if (email && password && repeatedPassword) {
+      onRegister(email, password, repeatedPassword);
     }
   };
 
@@ -48,6 +49,16 @@ const RegisterScreen = () => {
           onChangeText={(text) => setPassword(text)}
         />
       </Spacer>
+      <Spacer position="bottom" size="lg">
+        <TextInput
+          label="Repeat Password"
+          value={repeatedPassword}
+          textContentType="password"
+          autoCapitalize="none"
+          secureTextEntry
+          onChangeText={(text) => setRepeatedPassword(text)}
+        />
+      </Spacer>
 
       {error ? (
         <Spacer position="bottom" size="lg">
@@ -56,7 +67,7 @@ const RegisterScreen = () => {
             type="error"
             visible={Boolean(error)}
           >
-            Error: {error.code}
+            Error: {error}
           </HelperText>
         </Spacer>
       ) : (
@@ -65,7 +76,7 @@ const RegisterScreen = () => {
 
       <Spacer position="bottom" size="sm">
         <Button
-          icon="lock-outline"
+          icon="mail"
           mode="contained"
           buttonColor={theme.colors.brand.primary}
           style={styles.button}
@@ -77,7 +88,7 @@ const RegisterScreen = () => {
         </Button>
       </Spacer>
       <View style={styles.formFooter}>
-        <Typography variant="body">Already have an account?</Typography>
+        <Typography>Already have an account?</Typography>
         <Button
           labelStyle={styles.link}
           onPress={() => navigation.navigate("Login")}
