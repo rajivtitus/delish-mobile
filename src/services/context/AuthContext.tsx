@@ -15,6 +15,7 @@ interface AuthContext {
     password: string,
     repeatedPassword: string
   ) => void;
+  onLogout: () => void;
 }
 
 interface Props {
@@ -27,6 +28,7 @@ export const AuthContext = createContext<AuthContext>({
   error: null,
   onLogin: () => null,
   onRegister: () => null,
+  onLogout: () => null,
 });
 
 export const AuthProvider = ({ children }: Props): JSX.Element => {
@@ -59,6 +61,21 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
       .finally(() => setIsLoading(false));
   };
 
+  const onLogout = () => {
+    setUser(null);
+    auth.signOut();
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    auth.onAuthStateChanged((userData) => {
+      if (userData) {
+        setUser(userData);
+      }
+    });
+    setIsLoading(false);
+  }, [auth]);
+
   //clear error state after a few seconds
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -80,6 +97,7 @@ export const AuthProvider = ({ children }: Props): JSX.Element => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

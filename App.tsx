@@ -9,9 +9,6 @@ import {
 
 import "./src/utils/firebase";
 import theme from "./src/themes/theme";
-import { RestaurantsProvider } from "./src/services/context/RestaurantsContext";
-import { LocationProvider } from "./src/services/context/LocationContext";
-import { FavouritesProvider } from "./src/services/context/FavouritesContext";
 import { AuthProvider } from "./src/services/context/AuthContext";
 import RootNavigator from "./src/navigation/RootNavigator";
 
@@ -28,14 +25,8 @@ export default function App(): JSX.Element | null {
   return (
     <PaperProvider theme={theme}>
       <AuthProvider>
-        <FavouritesProvider>
-          <LocationProvider>
-            <RestaurantsProvider>
-              <RootNavigator />
-              <ExpoStatusBar style="auto" />
-            </RestaurantsProvider>
-          </LocationProvider>
-        </FavouritesProvider>
+        <RootNavigator />
+        <ExpoStatusBar style="auto" />
       </AuthProvider>
     </PaperProvider>
   );
