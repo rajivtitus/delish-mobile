@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { List, Button, useTheme } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -9,8 +9,8 @@ import { Theme } from "../../ts/types/theme";
 import { RestaurantsStackScreenProps } from "../../ts/types/navigation";
 import Layout from "../../components/Layout";
 import RestaurantCard from "../../components/restaurants/RestaurantCard";
-import Typography from "../../components/Typography";
 import Spacer from "../../components/Spacer";
+import AlternateText from "../../components/AlternateText";
 
 const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
   const restaurant = route.params?.restaurant;
@@ -96,11 +96,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
           </ScrollView>
         </>
       ) : (
-        <View style={styles.unavailable}>
-          <Typography variant="subtitle">
-            Restaurant Details Unavailable
-          </Typography>
-        </View>
+        <AlternateText title="Restaurant Details Unavailable" />
       )}
     </Layout>
   );
@@ -118,11 +114,6 @@ const makeStyles = (theme: Theme) =>
     },
     mediumText: {
       fontSize: theme.fontSizes.subtitle,
-    },
-    unavailable: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
     },
   });
 

@@ -10,7 +10,7 @@ import { FavouritesProvider } from "../../src/services/context/FavouritesContext
 import { useTheme } from "react-native-paper";
 import RestaurantsNavigator from "./RestaurantsNavigator";
 import MapScreen from "../screens/map/MapScreen";
-import SettingsScreen from "../screens/settings/SettingsScreen";
+import SettingsNavigator from "./SettingsNavigator";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 
@@ -51,7 +51,7 @@ const AppNavigator = () => {
           >
             <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
             <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
           </Tab.Navigator>
         </RestaurantsProvider>
       </LocationProvider>

@@ -37,3 +37,13 @@ export type AccountStackNavigationProps = StackNavigationProp<
   AccountStackParamList,
   AccountStackParam
 >;
+
+export type SettingsStackParamList = {
+  SettingsScreen: undefined;
+  Favourites: undefined;
+};
+export type SettingsStackParam = "SettingsScreen" | "Favourites";
+export type SettingsStackNavigationProps = StackNavigationProp<
+  SettingsStackParamList,
+  SettingsStackParam
+>;
