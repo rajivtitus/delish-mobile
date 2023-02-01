@@ -7,7 +7,7 @@ import { Theme } from "../ts/types/theme";
 type Variant = "title" | "subtitle" | "button" | "body" | "caption";
 
 interface Props {
-  variant: Variant;
+  variant?: Variant;
   children: ReactElement | ReactElement[] | string;
   style?: {};
 }

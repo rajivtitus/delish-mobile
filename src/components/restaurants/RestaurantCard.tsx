@@ -1,48 +1,50 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { Card } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
-import { Theme } from "../../../ts/types/theme";
-import { Restaurant } from "../../../ts/interfaces/restaurant";
-import star from "../../../../assets/star";
-import open from "../../../../assets/open";
-import Spacer from "../../../components/Spacer";
-import Typography from "../../../components/Typography";
+import { Theme } from "../../ts/types/theme";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import star from "../../../assets/svg/star";
+import open from "../../../assets/svg/open";
+import Spacer from "../../components/Spacer";
+import Typography from "../../components/Typography";
+import Favourite from "../../components/Favourite";
 
 interface Props {
-  restaurant: any;
+  restaurant: Restaurant;
 }
 
 const calculateStars = (num: number) => {
-  return Array.from(new Array(Math.round(num)));
+  return Array.from(new Array(Math.ceil(num)));
 };
 
-const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
+const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
   const {
+    placeId,
     name,
     icon,
-    photos,
     address,
     isOpenNow,
     rating,
     isClosedTemporarily,
   } = restaurant;
-  const ratingStars = calculateStars(rating);
+  const ratingStars = (rating && calculateStars(rating)) || [];
 
   return (
     <Card mode="contained" style={styles.card}>
+      <Favourite restaurant={restaurant} />
       <Card.Cover
         key={name}
-        borderTopLeftRadius={0}
-        borderTopRightRadius={0}
-        borderBottomLeftRadius={0}
-        borderBottomRightRadius={0}
+        borderTopLeftRadius={5}
+        borderTopRightRadius={5}
+        borderBottomLeftRadius={5}
+        borderBottomRightRadius={5}
         style={styles.cover}
-        source={{ uri: photos }}
+        source={{ uri: "https://source.unsplash.com/random" }}
       />
       <View style={styles.cardDetails}>
         <Typography variant="title">{name}</Typography>
@@ -50,21 +52,28 @@ const RestaurantInfoCard = ({ restaurant }: Props): JSX.Element => {
           <View style={styles.status}>
             <View style={styles.status}>
               {ratingStars.map((_, index) => (
-                <SvgXml xml={star} key={index} height={20} width={20} />
+                <SvgXml
+                  xml={star}
+                  key={`star-${placeId}-${index}`}
+                  height={20}
+                  width={20}
+                />
               ))}
             </View>
             <View style={styles.status}>
-              {!isClosedTemporarily && (
+              {isClosedTemporarily && (
                 <Typography variant="subtitle" style={styles.closedText}>
                   Closed
                 </Typography>
               )}
-              <Spacer position="left" size="sm" />
-              {isOpenNow && <SvgXml xml={open} height={20} width={20} />}
+              {isOpenNow && <SvgXml xml={open} height={25} width={25} />}
+              <Spacer position="left" size="md">
+                <Image style={styles.icon} source={{ uri: icon }} />
+              </Spacer>
             </View>
           </View>
         </Spacer>
-        <Typography variant="body">{address}</Typography>
+        <Typography variant="caption">{address}</Typography>
       </View>
     </Card>
   );
@@ -91,8 +100,12 @@ const makeStyles = ({ colors, spacing }: Theme) =>
     },
     closedText: {
       textTransform: "uppercase",
-      color: colors.text.error,
+      color: colors.error,
+    },
+    icon: {
+      width: 15,
+      height: 15,
     },
   });
 
-export default RestaurantInfoCard;
+export default RestaurantCard;
