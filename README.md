@@ -18,6 +18,11 @@
 
 ## Screenshots
 
+### Login Page
+<p>
+  <img src="https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png" width="560" />
+</p>
+
 ![delish-login](https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png)
 ![delish-register](https://user-images.githubusercontent.com/75184965/215988807-4d061e35-d0cf-43f4-8a92-f2bbcf4eacf7.png)
 ![restaurants](https://user-images.githubusercontent.com/75184965/215988809-75ab8969-a828-4317-8deb-df61c6f4a84e.png)
