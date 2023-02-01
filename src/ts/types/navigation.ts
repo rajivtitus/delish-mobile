@@ -41,8 +41,9 @@ export type AccountStackNavigationProps = StackNavigationProp<
 export type SettingsStackParamList = {
   "Account Settings": undefined;
   Favourites: undefined;
+  Camera: undefined;
 };
-export type SettingsStackParam = "Account Settings" | "Favourites";
+export type SettingsStackParam = "Account Settings" | "Favourites" | "Camera";
 export type SettingsStackNavigationProps = StackNavigationProp<
   SettingsStackParamList,
   SettingsStackParam
