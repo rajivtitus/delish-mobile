@@ -5,7 +5,7 @@
 ### Tech Stack
 
 | Typescript | ReactNative | Node.js |
-| :---: | :---: | :---: | :---: |
+| :---: | :---: | :---: |
 | Material Design | Google Maps | Stripe |
 
 
