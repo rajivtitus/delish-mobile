@@ -71,7 +71,7 @@ const makeStyles = (theme: Theme) =>
       maxWidth: 325,
       borderRadius: 5,
       padding: theme.spacing.xl,
-      backgroundColor: "rgba(255,255,255,0.85)",
+      backgroundColor: "rgba(255,255,255,0.95)",
     },
   });
 
