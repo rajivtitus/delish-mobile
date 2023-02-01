@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Avatar, List, ListItemProps, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
@@ -27,7 +27,9 @@ export default function SettingsScreen() {
   return (
     <Layout>
       <View style={styles.userInfo}>
-        <Avatar.Icon size={165} icon="human" />
+        <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+          <Avatar.Icon size={165} icon="human" />
+        </TouchableOpacity>
         <Spacer position="bottom" size="lg" />
         <Typography>{user?.email || ""}</Typography>
       </View>
