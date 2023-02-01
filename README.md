@@ -20,35 +20,35 @@
 
 ### Login 
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png" height="500" width="275" />
 </p>
 
 ### Register
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988807-4d061e35-d0cf-43f4-8a92-f2bbcf4eacf7.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988807-4d061e35-d0cf-43f4-8a92-f2bbcf4eacf7.png" height="500" width="275" />
 </p>
 
 ### Restaurants
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988809-75ab8969-a828-4317-8deb-df61c6f4a84e.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988809-75ab8969-a828-4317-8deb-df61c6f4a84e.png" height="500" width="275" />
 </p>
 
 
 ### Map
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988811-91f273d5-1af4-437a-8bf1-947148fe9617.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988811-91f273d5-1af4-437a-8bf1-947148fe9617.png" height="500" width="275" />
 </p>
 
 
 ### Settings
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988815-9595b7b6-8bdb-4cde-a99a-cc8d42f85bd4.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988815-9595b7b6-8bdb-4cde-a99a-cc8d42f85bd4.png" height="500" width="275" />
 </p>
 
 
 ### Favourites
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988816-ab54e239-b2a6-47c3-b98e-1837e8834d7b.png" height="475" width="275" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988816-ab54e239-b2a6-47c3-b98e-1837e8834d7b.png" height="500" width="275" />
 </p>
 
 ---
