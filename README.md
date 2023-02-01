@@ -20,7 +20,7 @@
 
 ### Login Page
 <p>
-  <img src="https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png" height="320" width="560" />
+  <img src="https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png" height="420" width="275" />
 </p>
 
 ![delish-login](https://user-images.githubusercontent.com/75184965/215988799-99744031-4340-4b03-94b6-e9ef25a0622b.png)
