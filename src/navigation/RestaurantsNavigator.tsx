@@ -21,7 +21,7 @@ const RestaurantsNavigator = () => {
       <Stack.Screen
         name="Restaurants List"
         component={RestaurantsScreen}
-        options={{ header: () => null }}
+        options={{ header: () => null, title: "" }}
       />
       <Stack.Screen
         name="Restaurant Details"

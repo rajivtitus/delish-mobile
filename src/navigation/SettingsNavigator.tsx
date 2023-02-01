@@ -10,11 +10,15 @@ const Stack = createStackNavigator<SettingsStackParamList>();
 
 const SettingsNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerMode: "screen",
+      }}
+    >
       <Stack.Screen
         name="Account Settings"
         component={SettingsScreen}
-        options={{ header: () => null }}
+        options={{ header: () => null, title: "Settings" }}
       />
       <Stack.Screen name="Favourites" component={FavouritesScreen} />
       <Stack.Screen name="Camera" component={CameraScreen} />
