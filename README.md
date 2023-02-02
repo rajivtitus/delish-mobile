@@ -9,7 +9,7 @@
 | Material Design | Google Maps | Stripe |
 
 
-**Project Link**: [Delish](https://expo.dev/@rajivtitus/delish-mobile)
+**Project Link**: [Delish](https://expo.dev/@rajivtitus/delish-mobile) <br/>
 (Note: You will need to install the expo app on android to view the application. Expo apps don't work on new iOS devices at the moment, apart from the account which was used to create the project)
 
 # Overview
