@@ -1,4 +1,4 @@
-import { FIREBASE_API_URL } from "@env";
+import { host } from "../../utils/environment";
 const camelize = require("camelize");
 
 import { LocationApiData, Geocode } from "../../ts/interfaces/location";
@@ -14,10 +14,7 @@ export const locationRequest = (
     },
   };
 
-  return fetch(
-    `${FIREBASE_API_URL}/geocode?city=${searchKeyword}`,
-    fetchOptions
-  )
+  return fetch(`${host}/geocode?city=${searchKeyword}`, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({

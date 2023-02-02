@@ -1,4 +1,4 @@
-import { FIREBASE_API_URL } from "@env";
+import { host } from "../../utils/environment";
 const camelize = require("camelize");
 
 import { Restaurant } from "../../ts/interfaces/restaurant";
@@ -28,10 +28,7 @@ export const restaurantsRequest = ({
   };
   const location = `${lat},${lng}`;
 
-  return fetch(
-    `${FIREBASE_API_URL}/placesNearby?location=${location}`,
-    fetchOptions
-  )
+  return fetch(`${host}/placesNearby?location=${location}`, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({
