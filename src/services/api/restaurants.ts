@@ -1,8 +1,9 @@
+import { FIREBASE_API_URL } from "@env";
 const camelize = require("camelize");
 
 import { Restaurant } from "../../ts/interfaces/restaurant";
 import { Location } from "../../ts/interfaces/location";
-import { mockRestaurants } from "./mocks/mockRestaurants";
+import { FetchOptions } from "../../ts/interfaces/fetch";
 
 type RestaurantInitial = Omit<
   Restaurant,
@@ -19,17 +20,23 @@ export const restaurantsRequest = ({
   lat,
   lng,
 }: Location): Promise<RestaurantApiData> => {
-  return new Promise((resolve, reject) => {
-    const currentLocation = `${lat},${lng}`;
-    const restaurants =
-      mockRestaurants[currentLocation as keyof typeof mockRestaurants];
-    if (restaurants) {
-      const formattedResponse = camelize(restaurants);
-      setTimeout(() => resolve(formattedResponse), 1000);
-    } else {
-      reject("No restaurants found");
-    }
-  });
+  const fetchOptions: FetchOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const location = `${lat},${lng}`;
+
+  return fetch(
+    `${FIREBASE_API_URL}/placesNearby?location=${location}`,
+    fetchOptions
+  )
+    .then((res) => res.json())
+    .then((data) => camelize(data))
+    .catch(() => ({
+      error: { message: "Unable to connect to server. Please try again" },
+    }));
 };
 
 export const restaurantsTransform = (restaurants: RestaurantInitial[]) => {

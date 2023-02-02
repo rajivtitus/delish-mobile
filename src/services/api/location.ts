@@ -1,21 +1,28 @@
+import { FIREBASE_API_URL } from "@env";
 const camelize = require("camelize");
 
 import { LocationApiData, Geocode } from "../../ts/interfaces/location";
-import { mockLocation } from "./mocks/mockLocation";
+import { FetchOptions } from "../../ts/interfaces/fetch";
 
 export const locationRequest = (
   searchKeyword: string
 ): Promise<LocationApiData> => {
-  return new Promise((resolve, reject) => {
-    const locationFound =
-      mockLocation[searchKeyword as keyof typeof mockLocation];
-    if (locationFound) {
-      const formattedResponse = camelize(locationFound);
-      resolve(formattedResponse);
-    } else {
-      reject("No location found");
-    }
-  });
+  const fetchOptions: FetchOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  return fetch(
+    `${FIREBASE_API_URL}/geocode?city=${searchKeyword}`,
+    fetchOptions
+  )
+    .then((res) => res.json())
+    .then((data) => camelize(data))
+    .catch(() => ({
+      error: { message: "Unable to connect to server. Please try again" },
+    }));
 };
 
 export const locationTransform = (geocode: Geocode) => {
