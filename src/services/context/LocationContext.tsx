@@ -38,7 +38,7 @@ export const LocationProvider = ({ children }: Props): JSX.Element => {
     if (searchKeyword) {
       setIsLoading(true);
       setKeyword(searchKeyword);
-      locationRequest(searchKeyword.toLowerCase())
+      locationRequest(searchKeyword.toLowerCase().trim())
         .then(({ results }) => locationTransform(results[0]))
         .then((res) => setLocation(res))
         .catch((err) => setError(err))
