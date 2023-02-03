@@ -29,6 +29,7 @@ const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
     icon,
     address,
     isOpenNow,
+    photos,
     rating,
     isClosedTemporarily,
   } = restaurant;
@@ -44,7 +45,7 @@ const RestaurantCard = ({ restaurant }: Props): JSX.Element => {
         borderBottomLeftRadius={5}
         borderBottomRightRadius={5}
         style={styles.cover}
-        source={{ uri: "https://source.unsplash.com/random" }}
+        source={{ uri: photos[0] }}
       />
       <View style={styles.cardDetails}>
         <Typography variant="title">{name}</Typography>

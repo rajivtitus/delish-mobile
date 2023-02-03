@@ -24,16 +24,13 @@ const RestaurantCompactCard = ({ restaurant, isMap }: Props) => {
       {/*Display webview only for Google maps*/}
       {isAndroid && isMap ? (
         <View style={[styles.webView, styles.image]}>
-          <WebView
-            resizeMode="cover"
-            source={{ uri: "https://source.unsplash.com/random" }}
-          />
+          <WebView resizeMode="cover" source={{ uri: restaurant.photos[0] }} />
         </View>
       ) : (
         <Image
           style={styles.image}
           resizeMode="cover"
-          source={{ uri: "https://source.unsplash.com/random" }}
+          source={{ uri: restaurant.photos[0] }}
         />
       )}
       <Typography style={styles.title}>{restaurant.name}</Typography>
