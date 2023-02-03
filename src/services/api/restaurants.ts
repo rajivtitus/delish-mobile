@@ -28,7 +28,10 @@ export const restaurantsRequest = ({
   };
   const location = `${lat},${lng}`;
 
-  return fetch(`${host}/placesNearby?location=${location}`, fetchOptions)
+  return fetch(
+    `${host}/placesNearby?location=${location}&mock=true`,
+    fetchOptions
+  )
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({

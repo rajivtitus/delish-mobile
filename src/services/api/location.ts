@@ -14,7 +14,7 @@ export const locationRequest = (
     },
   };
 
-  return fetch(`${host}/geocode?city=${searchKeyword}`, fetchOptions)
+  return fetch(`${host}/geocode?city=${searchKeyword}&mock=true`, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({

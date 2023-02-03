@@ -2,6 +2,8 @@ import { Request, Response } from "firebase-functions/v1";
 import { Client } from "@googlemaps/google-maps-services-js";
 import * as url from "url";
 
+import { mockRestaurants } from "./mocks/mockRestaurants";
+
 // Using random images because requesting Google assets costs $$
 const addRandomImage = (restaurant: any) => {
   restaurant.photos[0] = "https://source.unsplash.com/random?restaurants";
@@ -13,10 +15,27 @@ export const placesRequest = (
   response: Response,
   client: Client
 ) => {
-  const { location } = url.parse(request.url, true).query;
+  const { location, mock } = url.parse(request.url, true).query;
 
   if (!location) {
     response.status(400).json({ message: "No location specified" });
+    return;
+  }
+
+  if (mock === "true") {
+    const restaurants =
+      mockRestaurants[location as keyof typeof mockRestaurants];
+
+    if (restaurants) {
+      response.json(restaurants);
+    } else {
+      response.json({
+        htmlAttributions: null,
+        results: [],
+        status: "ZERO_RESULTS",
+        nextPageToken: null,
+      });
+    }
     return;
   }
 
