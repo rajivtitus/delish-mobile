@@ -2,6 +2,12 @@ import { Request, Response } from "firebase-functions/v1";
 import { Client } from "@googlemaps/google-maps-services-js";
 import * as url from "url";
 
+// Using random images because requesting Google assets costs $$
+const addRandomImage = (restaurant: any) => {
+  restaurant.photos[0] = "https://source.unsplash.com/random?restaurants";
+  return restaurant;
+};
+
 export const placesRequest = (
   request: Request,
   response: Response,
@@ -23,7 +29,10 @@ export const placesRequest = (
         type: "restaurant",
       },
     })
-    .then((res) => response.json(res.data))
+    .then((res) => {
+      res.data.results = res.data.results.map(addRandomImage);
+      return response.json(res.data);
+    })
     .catch((err) => {
       response.status(400);
       return response.json(err);
