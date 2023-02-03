@@ -1,9 +1,9 @@
-import { host } from "../../utils/environment";
 const camelize = require("camelize");
 
 import { Restaurant } from "../../ts/interfaces/restaurant";
 import { Location } from "../../ts/interfaces/location";
 import { FetchOptions } from "../../ts/interfaces/fetch";
+import { getUrl } from "../../utils/environment";
 
 type RestaurantInitial = Omit<
   Restaurant,
@@ -27,11 +27,9 @@ export const restaurantsRequest = ({
     },
   };
   const location = `${lat},${lng}`;
+  const url = getUrl(`/placesNearby?location=${location}`);
 
-  return fetch(
-    `${host}/placesNearby?location=${location}&mock=true`,
-    fetchOptions
-  )
+  return fetch(url, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({

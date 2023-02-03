@@ -3,10 +3,12 @@ import { Client } from "@googlemaps/google-maps-services-js";
 import * as url from "url";
 
 import { mockRestaurants } from "./mocks/mockRestaurants";
+import { mockImages } from "./mocks/mockRestaurants";
 
 // Using random images because requesting Google assets costs $$
 const addRandomImage = (restaurant: any) => {
-  restaurant.photos[0] = "https://source.unsplash.com/random?restaurants";
+  const randomIndex = Math.floor(Math.random() * mockImages.length);
+  restaurant.photos[0] = mockImages[randomIndex];
   return restaurant;
 };
 
@@ -27,6 +29,7 @@ export const placesRequest = (
       mockRestaurants[location as keyof typeof mockRestaurants];
 
     if (restaurants) {
+      restaurants.results = restaurants.results.map(addRandomImage);
       response.json(restaurants);
     } else {
       response.json({

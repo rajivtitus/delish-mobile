@@ -1,8 +1,8 @@
-import { host } from "../../utils/environment";
 const camelize = require("camelize");
 
 import { LocationApiData, Geocode } from "../../ts/interfaces/location";
 import { FetchOptions } from "../../ts/interfaces/fetch";
+import { getUrl } from "../../utils/environment";
 
 export const locationRequest = (
   searchKeyword: string
@@ -13,8 +13,9 @@ export const locationRequest = (
       "Content-Type": "application/json",
     },
   };
+  const url = getUrl(`/geocode?city=${searchKeyword}`);
 
-  return fetch(`${host}/geocode?city=${searchKeyword}&mock=true`, fetchOptions)
+  return fetch(url, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
     .catch(() => ({
