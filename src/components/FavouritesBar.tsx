@@ -29,7 +29,7 @@ export default function FavouritesBar({ favourites }: Props) {
           <Spacer key={favourite.placeId} position="right" size="sm">
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("RestaurantDetail", {
+                navigation.navigate("Restaurant Details", {
                   restaurant: favourite,
                 });
               }}

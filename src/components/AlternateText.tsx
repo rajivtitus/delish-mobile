@@ -5,12 +5,15 @@ import Typography from "./Typography";
 
 interface Props {
   title: string;
+  textStyle?: {};
 }
 
-const AlternateText = ({ title }: Props): JSX.Element => {
+const AlternateText = ({ title, textStyle }: Props): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Typography variant="subtitle">{title}</Typography>
+      <Typography variant="subtitle" style={[styles.title, { ...textStyle }]}>
+        {title}
+      </Typography>
     </View>
   );
 };
@@ -20,6 +23,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  title: {
+    textAlign: "center",
   },
 });
 

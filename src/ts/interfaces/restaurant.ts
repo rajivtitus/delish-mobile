@@ -6,7 +6,7 @@ export interface Restaurant {
   icon: string;
   name: string;
   openingHours: OpeningHours;
-  photos: Photo[];
+  photos: string[];
   placeId: string;
   plusCode: PlusCode;
   priceLevel: number;
@@ -23,12 +23,6 @@ export interface Restaurant {
   isClosedTemporarily: boolean;
 }
 
-export interface Photo {
-  height: number;
-  htmlAttributions: string[];
-  photoReference: string;
-  width: number;
-}
 export interface PlusCode {
   compoundCode: string;
   globalCode: string;

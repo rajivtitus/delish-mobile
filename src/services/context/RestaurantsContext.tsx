@@ -25,16 +25,25 @@ export const RestaurantsContext = createContext<RestaurantsContext>({
 export const RestaurantsProvider = ({ children }: Props): JSX.Element => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null | undefined>(null);
   const { location } = useLocationContext();
 
   useEffect(() => {
-    const fetchRestaurants = (currentLocation: Location) => {
+    const fetchRestaurants = async (currentLocation: Location) => {
       setIsLoading(true);
       restaurantsRequest(currentLocation)
-        .then(({ results }) => restaurantsTransform(results))
-        .then((res) => setRestaurants(res))
-        .catch((err) => setError(err))
+        .then((res) => {
+          if (res.status === "OK") {
+            return restaurantsTransform(res.results);
+          } else {
+            throw Error("Something went wrong. Please try again later!");
+          }
+        })
+        .then((data) => {
+          setRestaurants(data);
+          setError(null);
+        })
+        .catch((err) => setError(err.message))
         .finally(() => setIsLoading(false));
     };
 

@@ -34,7 +34,7 @@ const MapScreen = () => {
           latitude: location?.lat ?? 0,
           longitude: location?.lng ?? 0,
           latitudeDelta: latDelta,
-          longitudeDelta: 0.025,
+          longitudeDelta: 0.05,
         }}
       >
         {restaurants.map((restaurant) => (

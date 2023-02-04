@@ -1,21 +1,26 @@
 const camelize = require("camelize");
 
 import { LocationApiData, Geocode } from "../../ts/interfaces/location";
-import { mockLocation } from "./mocks/mockLocation";
+import { FetchOptions } from "../../ts/interfaces/fetch";
+import { getUrl } from "../../utils/environment";
 
 export const locationRequest = (
   searchKeyword: string
 ): Promise<LocationApiData> => {
-  return new Promise((resolve, reject) => {
-    const locationFound =
-      mockLocation[searchKeyword as keyof typeof mockLocation];
-    if (locationFound) {
-      const formattedResponse = camelize(locationFound);
-      resolve(formattedResponse);
-    } else {
-      reject("No location found");
-    }
-  });
+  const fetchOptions: FetchOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const url = getUrl(`/geocode?city=${searchKeyword}`);
+
+  return fetch(url, fetchOptions)
+    .then((res) => res.json())
+    .then((data) => camelize(data))
+    .catch((_) => {
+      throw Error("Something went wrong. Please try again later!");
+    });
 };
 
 export const locationTransform = (geocode: Geocode) => {

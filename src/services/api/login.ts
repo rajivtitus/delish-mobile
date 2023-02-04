@@ -1,7 +1,7 @@
 import {
-  signInWithEmailAndPassword,
   Auth,
   UserCredential,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 interface Props {

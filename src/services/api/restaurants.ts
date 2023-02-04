@@ -2,7 +2,8 @@ const camelize = require("camelize");
 
 import { Restaurant } from "../../ts/interfaces/restaurant";
 import { Location } from "../../ts/interfaces/location";
-import { mockRestaurants } from "./mocks/mockRestaurants";
+import { FetchOptions } from "../../ts/interfaces/fetch";
+import { getUrl } from "../../utils/environment";
 
 type RestaurantInitial = Omit<
   Restaurant,
@@ -19,17 +20,21 @@ export const restaurantsRequest = ({
   lat,
   lng,
 }: Location): Promise<RestaurantApiData> => {
-  return new Promise((resolve, reject) => {
-    const currentLocation = `${lat},${lng}`;
-    const restaurants =
-      mockRestaurants[currentLocation as keyof typeof mockRestaurants];
-    if (restaurants) {
-      const formattedResponse = camelize(restaurants);
-      setTimeout(() => resolve(formattedResponse), 1000);
-    } else {
-      reject("No restaurants found");
-    }
-  });
+  const fetchOptions: FetchOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const location = `${lat},${lng}`;
+  const url = getUrl(`/placesNearby?location=${location}`);
+
+  return fetch(url, fetchOptions)
+    .then((res) => res.json())
+    .then((data) => camelize(data))
+    .catch((_) => {
+      throw Error("Something went wrong. Please try again later!");
+    });
 };
 
 export const restaurantsTransform = (restaurants: RestaurantInitial[]) => {
