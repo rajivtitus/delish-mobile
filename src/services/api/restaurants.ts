@@ -32,9 +32,9 @@ export const restaurantsRequest = ({
   return fetch(url, fetchOptions)
     .then((res) => res.json())
     .then((data) => camelize(data))
-    .catch(() => ({
-      error: { message: "Unable to connect to server. Please try again" },
-    }));
+    .catch((_) => {
+      throw Error("Something went wrong. Please try again later!");
+    });
 };
 
 export const restaurantsTransform = (restaurants: RestaurantInitial[]) => {

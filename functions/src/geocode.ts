@@ -9,12 +9,7 @@ export const geocodeRequest = (
   response: Response,
   client: Client
 ) => {
-  const { city, mock } = url.parse(request.url, true).query;
-
-  if (!city) {
-    response.status(400).json({ message: "No city specified" });
-    return;
-  }
+  const { city = "", mock } = url.parse(request.url, true).query;
 
   if (mock === "true") {
     const location = mockLocation[city as keyof typeof mockLocation];

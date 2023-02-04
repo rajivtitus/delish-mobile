@@ -32,16 +32,25 @@ export const LocationProvider = ({ children }: Props): JSX.Element => {
   const [keyword, setKeyword] = useState("Toronto");
   const [location, setLocation] = useState<Locale | null | undefined>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null | undefined>(null);
 
   const onSearch = (searchKeyword: string) => {
     if (searchKeyword) {
       setIsLoading(true);
       setKeyword(searchKeyword);
       locationRequest(searchKeyword.toLowerCase().trim())
-        .then(({ results }) => locationTransform(results[0]))
-        .then((res) => setLocation(res))
-        .catch((err) => setError(err))
+        .then((res) => {
+          if (res.status === "OK") {
+            return locationTransform(res.results[0]);
+          } else {
+            throw Error("Something went wrong. Please try again later!");
+          }
+        })
+        .then((data) => {
+          setLocation(data);
+          setError(null);
+        })
+        .catch((err) => setError(err.message))
         .finally(() => setIsLoading(false));
     }
   };

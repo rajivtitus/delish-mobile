@@ -17,12 +17,7 @@ export const placesRequest = (
   response: Response,
   client: Client
 ) => {
-  const { location, mock } = url.parse(request.url, true).query;
-
-  if (!location) {
-    response.status(400).json({ message: "No location specified" });
-    return;
-  }
+  const { location = "", mock } = url.parse(request.url, true).query;
 
   if (mock === "true") {
     const restaurants =
@@ -32,11 +27,9 @@ export const placesRequest = (
       restaurants.results = restaurants.results.map(addRandomImage);
       response.json(restaurants);
     } else {
-      response.json({
-        htmlAttributions: null,
-        results: [],
-        status: "ZERO_RESULTS",
-        nextPageToken: null,
+      response.status(400).json({
+        status: 400,
+        message: "Request failed with status code 400",
       });
     }
     return;

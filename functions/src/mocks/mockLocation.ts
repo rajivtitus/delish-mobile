@@ -20,6 +20,7 @@ export const mockLocation = {
         },
       },
     ],
+    status: "OK",
   },
   "san francisco": {
     results: [
@@ -56,6 +57,7 @@ export const mockLocation = {
         },
       },
     ],
+    status: "OK",
   },
   toronto: {
     results: [
@@ -78,5 +80,6 @@ export const mockLocation = {
         },
       },
     ],
+    status: "OK",
   },
 };
