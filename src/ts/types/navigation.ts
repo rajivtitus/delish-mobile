@@ -6,9 +6,10 @@ import { Restaurant } from "../interfaces/restaurant";
 export type HomeTabParamList = {
   Restaurants: undefined;
   Map: undefined;
+  Cart: undefined;
   Settings: undefined;
 };
-export type HomeTabParam = "Restaurants" | "Map" | "Settings";
+export type HomeTabParam = "Restaurants" | "Map" | "Cart" | "Settings";
 export type HomeTabScreenProps = BottomTabScreenProps<
   HomeTabParamList,
   HomeTabParam

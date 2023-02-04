@@ -7,10 +7,12 @@ import { Theme } from "../ts/types/theme";
 import { RestaurantsProvider } from "../../src/services/context/RestaurantsContext";
 import { LocationProvider } from "../../src/services/context/LocationContext";
 import { FavouritesProvider } from "../../src/services/context/FavouritesContext";
+import { CheckoutProvider } from "../services/context/CheckoutContext";
 import { useTheme } from "react-native-paper";
 import RestaurantsNavigator from "./RestaurantsNavigator";
 import MapScreen from "../screens/map/MapScreen";
 import SettingsNavigator from "./SettingsNavigator";
+import CartScreen from "../screens/checkout/CartScreen";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 
@@ -23,6 +25,7 @@ const Tab = createBottomTabNavigator<HomeTabParamList>();
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
+  Cart: "md-cart",
   Settings: "md-settings",
 };
 
@@ -45,14 +48,17 @@ const AppNavigator = () => {
     <FavouritesProvider>
       <LocationProvider>
         <RestaurantsProvider>
-          <Tab.Navigator
-            screenOptions={(props) => screenOptions({ ...props, theme })}
-            initialRouteName="Restaurants"
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsNavigator} />
-          </Tab.Navigator>
+          <CheckoutProvider>
+            <Tab.Navigator
+              screenOptions={(props) => screenOptions({ ...props, theme })}
+              initialRouteName="Restaurants"
+            >
+              <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Cart" component={CartScreen} />
+              <Tab.Screen name="Settings" component={SettingsNavigator} />
+            </Tab.Navigator>
+          </CheckoutProvider>
         </RestaurantsProvider>
       </LocationProvider>
     </FavouritesProvider>
