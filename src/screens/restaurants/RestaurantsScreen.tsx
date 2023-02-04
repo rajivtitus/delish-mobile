@@ -29,7 +29,8 @@ const renderItems: ListRenderItem<Restaurant> = ({ item }) => (
 
 const RestaurantsScreen = (): JSX.Element => {
   const { restaurants, isLoading } = useRestaurantsContext();
-  const { error } = useLocationContext();
+  const { error: locationError } = useLocationContext();
+  const { error: restaurantsError } = useRestaurantsContext();
   const { favourites } = useFavouritesContext();
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
@@ -46,7 +47,7 @@ const RestaurantsScreen = (): JSX.Element => {
   return (
     <Layout>
       <Search />
-      {restaurants.length && !error ? (
+      {restaurants.length && !locationError && !restaurantsError ? (
         <FlatList
           data={restaurants}
           renderItem={renderItems}
@@ -59,7 +60,15 @@ const RestaurantsScreen = (): JSX.Element => {
         <></>
       )}
       <View style={styles.textContainer}>
-        {error && <AlternateText title={error} textStyle={styles.errorText} />}
+        {locationError && (
+          <AlternateText title={locationError} textStyle={styles.errorText} />
+        )}
+        {restaurantsError && (
+          <AlternateText
+            title={restaurantsError}
+            textStyle={styles.errorText}
+          />
+        )}
       </View>
     </Layout>
   );
