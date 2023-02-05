@@ -8,7 +8,7 @@ type Variant = "title" | "subtitle" | "button" | "body" | "caption";
 
 interface Props {
   variant?: Variant;
-  children: ReactElement | ReactElement[] | string;
+  children: ReactElement | ReactElement[] | string | number;
   style?: {};
 }
 

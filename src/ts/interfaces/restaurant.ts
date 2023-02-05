@@ -30,3 +30,9 @@ export interface PlusCode {
 export interface OpeningHours {
   openNow: boolean;
 }
+
+export interface MenuItem {
+  id: number;
+  name: string;
+  price: number;
+}
