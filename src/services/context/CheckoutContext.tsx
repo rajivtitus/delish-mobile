@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { useContext, createContext } from "react";
 
 import { MenuItem } from "../../ts/interfaces/restaurant";
@@ -10,7 +10,7 @@ interface CheckoutContext {
 }
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 export const CheckoutContext = createContext<CheckoutContext>({

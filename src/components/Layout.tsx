@@ -1,11 +1,11 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
 import { useTheme } from "react-native-paper";
 
 import { Theme } from "../ts/types/theme";
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 const Layout = ({ children }: Props) => {

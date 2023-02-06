@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { Text, StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
@@ -8,7 +8,7 @@ type Variant = "title" | "subtitle" | "button" | "body" | "caption";
 
 interface Props {
   variant?: Variant;
-  children: ReactElement | ReactElement[] | string | number;
+  children: ReactNode;
   style?: {};
 }
 

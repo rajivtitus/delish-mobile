@@ -7,8 +7,8 @@ import Typography from "./Typography";
 
 interface Props {
   quantity: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
+  onIncrement: any;
+  onDecrement: any;
 }
 
 const Quantity = ({ quantity, onIncrement, onDecrement }: Props) => {

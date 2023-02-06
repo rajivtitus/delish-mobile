@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useContext, createContext } from "react";
 import { getAuth, User } from "firebase/auth";
 
@@ -19,7 +19,7 @@ interface AuthContext {
 }
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 export const AuthContext = createContext<AuthContext>({

@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useContext, createContext } from "react";
 
 import { Restaurant } from "../../ts/interfaces/restaurant";
@@ -13,7 +13,7 @@ interface RestaurantsContext {
 }
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 export const RestaurantsContext = createContext<RestaurantsContext>({

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { View, StyleSheet } from "react-native";
 import { useTheme } from "react-native-paper";
 
@@ -11,7 +11,7 @@ type Size = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
 interface Props {
   position: Position;
   size: Size;
-  children?: ReactElement | ReactElement[];
+  children?: ReactNode;
   style?: {};
 }
 

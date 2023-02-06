@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactNode } from "react";
 import { StyleSheet, ImageBackground, Image, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
@@ -11,7 +11,7 @@ const home = require("../../../assets/images/home.jpg");
 const homeUri = Image.resolveAssetSource(home).uri;
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 const AccountWrapper = ({ children }: Props) => {

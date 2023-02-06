@@ -1,9 +1,9 @@
-import React, { useRef, ReactElement, useEffect } from "react";
+import React, { useRef, useEffect, ReactNode } from "react";
 import { Animated } from "react-native";
 
 interface Props {
   duration?: number;
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
   style?: {};
 }
 

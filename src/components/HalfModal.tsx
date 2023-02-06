@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Portal, Modal, useTheme } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
@@ -8,7 +8,7 @@ import { Theme } from "../ts/types/theme";
 interface Props {
   isToggled: boolean;
   handleModalToggle: () => void;
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 const HalfModal = ({ isToggled, handleModalToggle, children }: Props) => {

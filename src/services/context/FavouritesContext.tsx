@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useContext, createContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -12,7 +12,7 @@ interface FavouritesContext {
 }
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 export const FavouritesContext = createContext<FavouritesContext>({

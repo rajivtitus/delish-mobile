@@ -1,4 +1,4 @@
-import React, { useState, ReactElement, useEffect } from "react";
+import React, { useState, ReactNode, useEffect } from "react";
 import { useContext, createContext } from "react";
 
 import { Viewport } from "../../ts/interfaces/location";
@@ -17,7 +17,7 @@ interface LocationContext {
 }
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 export const LocationContext = createContext<LocationContext>({
