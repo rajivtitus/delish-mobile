@@ -4,24 +4,21 @@ import { useTheme, Button } from "react-native-paper";
 
 import { Theme } from "../../ts/types/theme";
 import { MenuItem as Item } from "../../ts/interfaces/restaurant";
-import Spacer from "../Spacer";
 import Typography from "../Typography";
+import Spacer from "../Spacer";
+import ItemDetailsModal from "./ItemDetailsModal";
 
 interface Props {
   item: Item;
 }
 
 const MenuItem = ({ item }: Props) => {
-  const [quantity, setQuantity] = useState(0);
+  const [isToggled, setIsToggled] = useState<boolean>(false);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
-  const onIncrement = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const onDecrement = () => {
-    setQuantity((prevQuantity) => prevQuantity - 1);
+  const handleModalToggle = () => {
+    setIsToggled((prevIsToggled) => !prevIsToggled);
   };
 
   return (
@@ -32,64 +29,35 @@ const MenuItem = ({ item }: Props) => {
           <Typography variant="caption">{`$${item.price}`}</Typography>
         </Spacer>
       </View>
-      <View style={styles.buttonContainer}>
-        {quantity ? (
-          <>
-            <Button
-              mode="outlined"
-              onPress={onDecrement}
-              style={styles.button}
-              labelStyle={styles.buttonLabel}
-              compact
-            >
-              -
-            </Button>
-            <Typography style={styles.quantity}>{quantity}</Typography>
-            <Button
-              mode="outlined"
-              onPress={onIncrement}
-              disabled={quantity === 99}
-              style={styles.button}
-              labelStyle={styles.buttonLabel}
-              compact
-            >
-              +
-            </Button>
-          </>
-        ) : (
-          <Button
-            mode="outlined"
-            style={styles.button}
-            labelStyle={styles.buttonLabel}
-            onPress={onIncrement}
-          >
-            Add
-          </Button>
-        )}
-      </View>
+      <Button
+        mode="outlined"
+        style={styles.button}
+        labelStyle={styles.buttonLabel}
+        onPress={handleModalToggle}
+        compact
+      >
+        +
+      </Button>
+      <ItemDetailsModal
+        item={item}
+        isToggled={isToggled}
+        handleModalToggle={handleModalToggle}
+      />
     </View>
   );
 };
-
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flexDirection: "row",
       justifyContent: "space-between",
     },
-    buttonContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-    },
     button: {
       borderRadius: 5,
     },
     buttonLabel: {
       marginVertical: theme.spacing.xs,
-      marginHorizontal: theme.spacing.md,
-    },
-    quantity: {
-      paddingHorizontal: theme.spacing.md,
+      marginHorizontal: theme.spacing.lg,
     },
   });
 

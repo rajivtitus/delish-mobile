@@ -12,7 +12,7 @@ import Loading from "../../components/Loading";
 import Search from "../../components/Search";
 import FadeInView from "../../components/animations/FadeInView";
 import FlatListItem from "../../components/restaurants/FlatListItem";
-import FavouritesBar from "../../components/FavouritesBar";
+import FavouritesBar from "../../components/restaurants/FavouritesBar";
 import AlternateText from "../../components/AlternateText";
 
 const renderDivider = () => <Divider bold />;

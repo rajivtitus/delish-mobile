@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  createStackNavigator,
-  TransitionPresets,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import { RestaurantsStackParamList } from "../ts/types/navigation";
 import RestaurantsScreen from "../screens/restaurants/RestaurantsScreen";
@@ -14,7 +11,6 @@ const RestaurantsNavigator = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...TransitionPresets.ModalSlideFromBottomIOS,
         headerMode: "screen",
       }}
     >
