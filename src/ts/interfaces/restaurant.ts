@@ -44,3 +44,10 @@ export interface MenuItem {
   name: string;
   price: number;
 }
+
+export interface RestaurantSummary {
+  placeId: string;
+  name: string;
+  address: string;
+  photos: string[];
+}

@@ -18,8 +18,8 @@ const CartScreen = () => {
   return (
     <Layout>
       <View style={styles.container}>
-        {cart.length ? (
-          cart.map((item) => {
+        {cart && cart.items.length ? (
+          cart.items.map((item) => {
             return (
               <View key={item.id} style={styles.row}>
                 <View>
@@ -30,7 +30,7 @@ const CartScreen = () => {
                 </View>
                 <Quantity
                   quantity={item.quantity}
-                  onIncrement={() => addToCart(item, 1)}
+                  onIncrement={() => addToCart(cart.restaurant, item, 1)}
                   onDecrement={() => removeFromCart(item.id)}
                 />
               </View>

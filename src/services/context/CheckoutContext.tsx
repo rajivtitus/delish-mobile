@@ -1,11 +1,15 @@
 import React, { ReactNode, useState } from "react";
 import { useContext, createContext } from "react";
 
-import { MenuItem } from "../../ts/interfaces/restaurant";
-import { CartItem } from "../../ts/interfaces/checkout";
+import { MenuItem, RestaurantSummary } from "../../ts/interfaces/restaurant";
+import { Cart } from "../../ts/interfaces/checkout";
 interface CheckoutContext {
-  cart: CartItem[];
-  addToCart: (item: MenuItem, quantity: number) => void;
+  cart: Cart | null | undefined;
+  addToCart: (
+    restaurant: RestaurantSummary,
+    item: MenuItem,
+    quantity: number
+  ) => void;
   removeFromCart: (menuItemId: number) => void;
 }
 
@@ -14,39 +18,62 @@ interface Props {
 }
 
 export const CheckoutContext = createContext<CheckoutContext>({
-  cart: [],
+  cart: null,
   addToCart: () => null,
   removeFromCart: () => null,
 });
 
 export const CheckoutProvider = ({ children }: Props): JSX.Element => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<Cart | null | undefined>(null);
 
-  const addToCart = (menuItem: MenuItem, quantity: number) => {
-    const itemInCart = cart.find((item) => item.id === menuItem.id);
-    if (itemInCart) {
-      itemInCart.quantity += quantity;
-      const newCart = cart.map((item) => {
-        return item.id === itemInCart.id ? itemInCart : item;
-      });
+  const addToCart = (
+    restaurant: RestaurantSummary,
+    menuItem: MenuItem,
+    quantity: number
+  ) => {
+    if (!cart) {
+      const newCart = { restaurant, items: [{ ...menuItem, quantity }] };
       setCart(newCart);
-    } else {
-      const newItem = { ...menuItem, quantity };
-      setCart((prevCart) => [...prevCart, newItem]);
+    }
+
+    if (cart && cart.restaurant.placeId !== restaurant.placeId) {
+      console.log("Resto already in cart");
+    }
+
+    if (cart) {
+      const itemInCart = cart.items.find((item) => item.id === menuItem.id);
+
+      if (itemInCart) {
+        itemInCart.quantity += quantity;
+        const newItems = cart.items.map((item) => {
+          return item.id === itemInCart.id ? itemInCart : item;
+        });
+        setCart({ ...cart, items: newItems });
+      } else {
+        const newItem = { ...menuItem, quantity };
+        setCart({ ...cart, items: [...cart.items, newItem] });
+      }
     }
   };
 
   const removeFromCart = (menuItemId: number) => {
-    const itemInCart = cart.find((item) => item.id === menuItemId);
-    if (itemInCart && itemInCart.quantity > 1) {
-      itemInCart.quantity--;
-      const newCart = cart.map((item) => {
-        return item.id === itemInCart.id ? itemInCart : item;
-      });
-      setCart(newCart);
-    } else {
-      const newCart = cart.filter((item) => item.id !== menuItemId);
-      setCart(newCart);
+    if (cart && cart.items.length === 1) {
+      setCart(null);
+    }
+
+    if (cart) {
+      const itemInCart = cart.items.find((item) => item.id === menuItemId);
+
+      if (itemInCart && itemInCart.quantity > 1) {
+        itemInCart.quantity--;
+        const newItems = cart.items.map((item) => {
+          return item.id === itemInCart.id ? itemInCart : item;
+        });
+        setCart({ ...cart, items: newItems });
+      } else {
+        const newItems = cart.items.filter((item) => item.id !== menuItemId);
+        setCart({ ...cart, items: newItems });
+      }
     }
   };
 

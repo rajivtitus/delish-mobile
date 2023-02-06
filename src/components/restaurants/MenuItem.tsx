@@ -3,16 +3,20 @@ import { View, StyleSheet } from "react-native";
 import { useTheme, Button } from "react-native-paper";
 
 import { Theme } from "../../ts/types/theme";
-import { MenuItem as Item } from "../../ts/interfaces/restaurant";
+import {
+  MenuItem as Item,
+  RestaurantSummary,
+} from "../../ts/interfaces/restaurant";
 import Typography from "../Typography";
 import Spacer from "../Spacer";
 import ItemDetailsModal from "./ItemDetailsModal";
 
 interface Props {
+  restaurantSummary: RestaurantSummary;
   item: Item;
 }
 
-const MenuItem = ({ item }: Props) => {
+const MenuItem = ({ restaurantSummary, item }: Props) => {
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
@@ -42,6 +46,7 @@ const MenuItem = ({ item }: Props) => {
         item={item}
         isToggled={isToggled}
         handleModalToggle={handleModalToggle}
+        restaurantSummary={restaurantSummary}
       />
     </View>
   );

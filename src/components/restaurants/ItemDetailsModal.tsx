@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 
 import { Theme } from "../../ts/types/theme";
-import { MenuItem } from "../../ts/interfaces/restaurant";
+import { MenuItem, RestaurantSummary } from "../../ts/interfaces/restaurant";
 import { useCheckoutContext } from "../../services/context/CheckoutContext";
 import Typography from "../Typography";
 import Spacer from "../Spacer";
@@ -15,9 +15,15 @@ interface Props {
   item: MenuItem;
   isToggled: boolean;
   handleModalToggle: () => void;
+  restaurantSummary: RestaurantSummary;
 }
 
-const ItemDetailsModal = ({ item, isToggled, handleModalToggle }: Props) => {
+const ItemDetailsModal = ({
+  restaurantSummary,
+  item,
+  isToggled,
+  handleModalToggle,
+}: Props) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCheckoutContext();
   const theme = useTheme<Theme>();
@@ -31,6 +37,11 @@ const ItemDetailsModal = ({ item, isToggled, handleModalToggle }: Props) => {
     setQuantity((prevQuantity) => {
       return prevQuantity === 1 ? 1 : prevQuantity - 1;
     });
+  };
+
+  const handleAddToCart = () => {
+    addToCart(restaurantSummary, item, quantity);
+    handleModalToggle();
   };
 
   return (
@@ -59,7 +70,7 @@ const ItemDetailsModal = ({ item, isToggled, handleModalToggle }: Props) => {
             <Button
               mode="contained"
               icon="cart"
-              onPress={() => addToCart(item, quantity)}
+              onPress={handleAddToCart}
               style={styles.button}
             >
               Add To Cart
@@ -75,12 +86,14 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       height: "100%",
-      top: "75%",
+      top: "74%",
     },
     closeButton: {
       position: "absolute",
-      right: 5,
+      top: 0,
+      right: 0,
       padding: theme.spacing.sm,
+      zIndex: 99,
     },
     scrollContainer: {
       flex: 1,

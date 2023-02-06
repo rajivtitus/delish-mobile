@@ -13,17 +13,25 @@ import RestaurantCard from "../../components/restaurants/RestaurantCard";
 import MenuItem from "../../components/restaurants/MenuItem";
 
 const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
-  const restaurant = route.params?.restaurant;
   const [isBreakfastOpen, setIsBreakfastOpen] = useState<boolean>(false);
   const [isLunchOpen, setIsLunchOpen] = useState<boolean>(false);
   const [isDinnerOpen, setIsDinnerOpen] = useState<boolean>(false);
   const [isDrinksOpen, setIsDrinksOpen] = useState<boolean>(false);
+  const restaurant = route.params?.restaurant;
+  const restaurantSummary =
+    restaurant &&
+    (({ placeId, name, address, photos }) => ({
+      placeId,
+      name,
+      address,
+      photos,
+    }))(restaurant);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
   return (
     <Layout>
-      {restaurant ? (
+      {restaurant && restaurantSummary ? (
         <>
           <ScrollView>
             <RestaurantCard restaurant={restaurant} />
@@ -46,7 +54,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
                   size="xl"
                   style={styles.menuItem}
                 >
-                  <MenuItem item={item} />
+                  <MenuItem restaurantSummary={restaurantSummary} item={item} />
                 </Spacer>
               ))}
             </List.Accordion>
@@ -68,7 +76,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
                   size="xl"
                   style={styles.menuItem}
                 >
-                  <MenuItem item={item} />
+                  <MenuItem restaurantSummary={restaurantSummary} item={item} />
                 </Spacer>
               ))}
             </List.Accordion>
@@ -90,7 +98,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
                   size="xl"
                   style={styles.menuItem}
                 >
-                  <MenuItem item={item} />
+                  <MenuItem restaurantSummary={restaurantSummary} item={item} />
                 </Spacer>
               ))}
             </List.Accordion>
@@ -112,7 +120,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
                   size="xl"
                   style={styles.menuItem}
                 >
-                  <MenuItem item={item} />
+                  <MenuItem restaurantSummary={restaurantSummary} item={item} />
                 </Spacer>
               ))}
             </List.Accordion>
