@@ -6,7 +6,6 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import { Theme } from "../../ts/types/theme";
 import { RestaurantsStackScreenProps } from "../../ts/types/navigation";
-import { mockMenu } from "../../utils/mocks/menu";
 import Layout from "../../components/Layout";
 import Spacer from "../../components/Spacer";
 import AlternateText from "../../components/AlternateText";
@@ -40,7 +39,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               style={styles.accordion}
             >
               <Spacer position="bottom" size="md" />
-              {mockMenu.breakfast.map((item) => (
+              {restaurant.menu.breakfast.map((item) => (
                 <Spacer
                   key={item.id}
                   position="bottom"
@@ -62,7 +61,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               style={styles.accordion}
             >
               <Spacer position="bottom" size="md" />
-              {mockMenu.lunch.map((item) => (
+              {restaurant.menu.lunch.map((item) => (
                 <Spacer
                   key={item.id}
                   position="bottom"
@@ -84,7 +83,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               style={styles.accordion}
             >
               <Spacer position="bottom" size="md" />
-              {mockMenu.dinner.map((item) => (
+              {restaurant.menu.dinner.map((item) => (
                 <Spacer
                   key={item.id}
                   position="bottom"
@@ -106,7 +105,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               style={styles.accordion}
             >
               <Spacer position="bottom" size="md" />
-              {mockMenu.drinks.map((item) => (
+              {restaurant.menu.drinks.map((item) => (
                 <Spacer
                   key={item.id}
                   position="bottom"

@@ -66,9 +66,7 @@ const makeStyles = (theme: Theme) =>
     container: {
       flex: 1,
       backgroundColor: theme.colors.bg.primary,
-      paddingHorizontal: theme.spacing.lg,
-      paddingTop: theme.spacing.xxl,
-      paddingBottom: theme.spacing.lg,
+      padding: theme.spacing.lg,
     },
     quantity: {
       alignItems: "center",

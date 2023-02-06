@@ -4,11 +4,15 @@ import * as url from "url";
 
 import { mockRestaurants } from "./mocks/mockRestaurants";
 import { mockImages } from "./mocks/mockRestaurants";
+import { mockMenu } from "./mocks/mockMenu";
 
 // Using random images because requesting Google assets costs $$
-const addRandomImage = (restaurant: any) => {
+// Also adding a mock menu as Places API does not have restaurant menu info
+const addMockData = (restaurant: any) => {
   const randomIndex = Math.floor(Math.random() * mockImages.length);
   restaurant.photos[0] = mockImages[randomIndex];
+  restaurant.menu = mockMenu;
+
   return restaurant;
 };
 
@@ -24,7 +28,7 @@ export const placesRequest = (
       mockRestaurants[location as keyof typeof mockRestaurants];
 
     if (restaurants) {
-      restaurants.results = restaurants.results.map(addRandomImage);
+      restaurants.results = restaurants.results.map(addMockData);
       response.json(restaurants);
     } else {
       response.status(400).json({
@@ -45,7 +49,7 @@ export const placesRequest = (
       },
     })
     .then((res) => {
-      res.data.results = res.data.results.map(addRandomImage);
+      res.data.results = res.data.results.map(addMockData);
       return response.json(res.data);
     })
     .catch((err) => {

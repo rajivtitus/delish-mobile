@@ -21,7 +21,6 @@ export const CheckoutContext = createContext<CheckoutContext>({
 
 export const CheckoutProvider = ({ children }: Props): JSX.Element => {
   const [cart, setCart] = useState<CartItem[]>([]);
-  console.log(cart);
 
   const addToCart = (menuItem: MenuItem, quantity: number) => {
     const itemInCart = cart.find((item) => item.id === menuItem.id);
