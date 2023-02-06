@@ -25,8 +25,8 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
     <Layout>
       {restaurant ? (
         <>
-          <RestaurantCard restaurant={restaurant} />
           <ScrollView>
+            <RestaurantCard restaurant={restaurant} />
             <List.Accordion
               title="Breakfast"
               left={(props) => <List.Icon {...props} icon="bread-slice" />}
