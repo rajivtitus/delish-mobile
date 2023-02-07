@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, Divider, useTheme } from "react-native-paper";
+import { Avatar, Button, Divider, useTheme } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { Theme } from "../../ts/types/theme";
@@ -80,7 +80,11 @@ const CartScreen = () => {
           </View>
         </ScrollView>
       ) : (
-        <AlternateText title="There are no items in your cart" />
+        <AlternateText title="There are no items in your cart">
+          <Spacer position="bottom" size="lg">
+            <Avatar.Icon icon="cart-off" size={96} />
+          </Spacer>
+        </AlternateText>
       )}
     </Layout>
   );

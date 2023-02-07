@@ -119,7 +119,7 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
           </ScrollView>
         </>
       ) : (
-        <AlternateText title="Restaurant Details Unavailable" />
+        <AlternateText title="Restaurant details unavailable" />
       )}
     </Layout>
   );
