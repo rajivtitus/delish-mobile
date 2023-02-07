@@ -1,10 +1,10 @@
-import { MenuItem, RestaurantSummary } from "./restaurant";
+import { MenuItem, Restaurant } from "./restaurant";
 
-interface CartItem extends MenuItem {
+export interface CartItem extends MenuItem {
   quantity: number;
 }
 
 export interface Cart {
-  restaurant: RestaurantSummary;
+  restaurant: Restaurant;
   items: CartItem[];
 }

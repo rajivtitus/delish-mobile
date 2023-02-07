@@ -1,16 +1,13 @@
 import React, { ReactNode, useState } from "react";
 import { useContext, createContext } from "react";
 
-import { MenuItem, RestaurantSummary } from "../../ts/interfaces/restaurant";
+import { MenuItem, Restaurant } from "../../ts/interfaces/restaurant";
 import { Cart } from "../../ts/interfaces/checkout";
 interface CheckoutContext {
   cart: Cart | null | undefined;
-  addToCart: (
-    restaurant: RestaurantSummary,
-    item: MenuItem,
-    quantity: number
-  ) => void;
+  addToCart: (restaurant: Restaurant, item: MenuItem, quantity: number) => void;
   removeFromCart: (menuItemId: number) => void;
+  clearCart: () => void;
 }
 
 interface Props {
@@ -21,23 +18,26 @@ export const CheckoutContext = createContext<CheckoutContext>({
   cart: null,
   addToCart: () => null,
   removeFromCart: () => null,
+  clearCart: () => null,
 });
 
 export const CheckoutProvider = ({ children }: Props): JSX.Element => {
   const [cart, setCart] = useState<Cart | null | undefined>(null);
 
   const addToCart = (
-    restaurant: RestaurantSummary,
+    restaurant: Restaurant,
     menuItem: MenuItem,
     quantity: number
   ) => {
     if (!cart) {
       const newCart = { restaurant, items: [{ ...menuItem, quantity }] };
       setCart(newCart);
+      return;
     }
 
     if (cart && cart.restaurant.placeId !== restaurant.placeId) {
       console.log("Resto already in cart");
+      return;
     }
 
     if (cart) {
@@ -57,8 +57,9 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
   };
 
   const removeFromCart = (menuItemId: number) => {
-    if (cart && cart.items.length === 1) {
+    if (cart && cart.items[0].quantity === 1) {
       setCart(null);
+      return;
     }
 
     if (cart) {
@@ -77,12 +78,17 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
     }
   };
 
+  const clearCart = () => {
+    setCart(null);
+  };
+
   return (
     <CheckoutContext.Provider
       value={{
         cart,
         addToCart,
         removeFromCart,
+        clearCart,
       }}
     >
       {children}

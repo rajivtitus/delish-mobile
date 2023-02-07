@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { AntDesign } from "@expo/vector-icons";
 
 import { Theme } from "../../ts/types/theme";
-import { MenuItem, RestaurantSummary } from "../../ts/interfaces/restaurant";
+import { MenuItem, Restaurant } from "../../ts/interfaces/restaurant";
 import { useCheckoutContext } from "../../services/context/CheckoutContext";
 import Typography from "../Typography";
 import Spacer from "../Spacer";
@@ -15,11 +15,11 @@ interface Props {
   item: MenuItem;
   isToggled: boolean;
   handleModalToggle: () => void;
-  restaurantSummary: RestaurantSummary;
+  restaurant: Restaurant;
 }
 
 const ItemDetailsModal = ({
-  restaurantSummary,
+  restaurant,
   item,
   isToggled,
   handleModalToggle,
@@ -40,7 +40,7 @@ const ItemDetailsModal = ({
   };
 
   const handleAddToCart = () => {
-    addToCart(restaurantSummary, item, quantity);
+    addToCart(restaurant, item, quantity);
     handleModalToggle();
   };
 
