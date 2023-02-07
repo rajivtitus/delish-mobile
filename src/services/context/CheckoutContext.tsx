@@ -3,11 +3,12 @@ import { useContext, createContext } from "react";
 import { useStripe } from "@stripe/stripe-react-native";
 
 import { MenuItem, Restaurant } from "../../ts/interfaces/restaurant";
-import { Cart } from "../../ts/interfaces/checkout";
+import { CartItem } from "../../ts/interfaces/checkout";
 import { paymentSheetParamsRequest } from "../api/checkout";
 
 interface CheckoutContext {
-  cart: Cart | null | undefined;
+  currRestaurant: Restaurant | null | undefined;
+  cart: CartItem[];
   isLoading: boolean;
   error: string | null | undefined;
   addToCart: (restaurant: Restaurant, item: MenuItem, quantity: number) => void;
@@ -21,7 +22,8 @@ interface Props {
 }
 
 export const CheckoutContext = createContext<CheckoutContext>({
-  cart: null,
+  currRestaurant: null,
+  cart: [],
   isLoading: false,
   error: null,
   addToCart: () => null,
@@ -31,7 +33,10 @@ export const CheckoutContext = createContext<CheckoutContext>({
 });
 
 export const CheckoutProvider = ({ children }: Props): JSX.Element => {
-  const [cart, setCart] = useState<Cart | null | undefined>(null);
+  const [currRestaurant, setCurrRestaurant] = useState<
+    Restaurant | null | undefined
+  >(null);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null | undefined>(null);
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
@@ -41,57 +46,59 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
     menuItem: MenuItem,
     quantity: number
   ) => {
-    if (!cart) {
-      const newCart = { restaurant, items: [{ ...menuItem, quantity }] };
+    if (!currRestaurant) {
+      const newCart = [{ ...menuItem, quantity }];
+      setCurrRestaurant(restaurant);
       setCart(newCart);
       return;
     }
 
-    if (cart && cart.restaurant.placeId !== restaurant.placeId) {
-      console.log("Resto already in cart");
+    if (currRestaurant.placeId !== restaurant.placeId) {
+      console.log("You already have an order from another restaurant");
       return;
     }
 
-    if (cart) {
-      const itemInCart = cart.items.find((item) => item.id === menuItem.id);
-
+    if (currRestaurant) {
+      const itemInCart = cart.find((item) => item.id === menuItem.id);
       if (itemInCart) {
         itemInCart.quantity += quantity;
-        const newItems = cart.items.map((item) => {
+        const newItems = cart.map((item) => {
           return item.id === itemInCart.id ? itemInCart : item;
         });
-        setCart({ ...cart, items: newItems });
+        setCart(newItems);
       } else {
         const newItem = { ...menuItem, quantity };
-        setCart({ ...cart, items: [...cart.items, newItem] });
+        setCart([...cart, newItem]);
       }
     }
   };
 
   const removeFromCart = (menuItemId: number) => {
-    if (cart && cart.items[0].quantity === 1) {
-      setCart(null);
+    if (currRestaurant && (cart.length && cart[0].quantity) === 1) {
+      setCurrRestaurant(null);
+      setCart([]);
       return;
     }
 
-    if (cart) {
-      const itemInCart = cart.items.find((item) => item.id === menuItemId);
+    if (currRestaurant) {
+      const itemInCart = cart.find((item) => item.id === menuItemId);
 
       if (itemInCart && itemInCart.quantity > 1) {
         itemInCart.quantity--;
-        const newItems = cart.items.map((item) => {
+        const newItems = cart.map((item) => {
           return item.id === itemInCart.id ? itemInCart : item;
         });
-        setCart({ ...cart, items: newItems });
+        setCart(newItems);
       } else {
-        const newItems = cart.items.filter((item) => item.id !== menuItemId);
-        setCart({ ...cart, items: newItems });
+        const newItems = cart.filter((item) => item.id !== menuItemId);
+        setCart(newItems);
       }
     }
   };
 
   const clearCart = () => {
-    setCart(null);
+    setCurrRestaurant(null);
+    setCart([]);
   };
 
   const checkout = async (amount: number) => {
@@ -111,7 +118,8 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
           throw Error("Payment failed, please try again later!");
         } else {
           console.log("Payment Successfull");
-          setCart(null);
+          setCart([]);
+          setCurrRestaurant(null);
         }
       })
       .catch((err) => setError(err.message))
@@ -122,6 +130,7 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
     <CheckoutContext.Provider
       value={{
         cart,
+        currRestaurant,
         isLoading,
         error,
         addToCart,

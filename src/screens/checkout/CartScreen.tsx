@@ -14,24 +14,31 @@ import Quantity from "../../components/Quantity";
 import RestaurantCard from "../../components/restaurants/RestaurantCard";
 
 const CartScreen = () => {
-  const { cart, addToCart, removeFromCart, clearCart, checkout, isLoading } =
-    useCheckoutContext();
-  const cartTotal = cart?.items && calcCartTotal(cart.items);
+  const {
+    currRestaurant,
+    cart,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    checkout,
+    isLoading,
+  } = useCheckoutContext();
+  const cartTotal = calcCartTotal(cart);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
   return (
     <Layout>
-      {cart ? (
+      {currRestaurant && cart ? (
         <ScrollView contentContainerStyle={styles.scrollView}>
-          <RestaurantCard restaurant={cart.restaurant} />
+          <RestaurantCard restaurant={currRestaurant} />
           <Divider bold />
           <View style={styles.itemsContainer}>
             <Spacer position="bottom" size="lg">
               <Typography variant="title">Order Summary</Typography>
             </Spacer>
 
-            {cart.items.map((item) => {
+            {cart.map((item) => {
               return (
                 <Spacer
                   key={item.id}
@@ -47,7 +54,7 @@ const CartScreen = () => {
                   </View>
                   <Quantity
                     quantity={item.quantity}
-                    onIncrement={() => addToCart(cart.restaurant, item, 1)}
+                    onIncrement={() => addToCart(currRestaurant, item, 1)}
                     onDecrement={() => removeFromCart(item.id)}
                   />
                 </Spacer>
