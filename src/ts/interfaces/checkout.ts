@@ -8,3 +8,8 @@ export interface Cart {
   restaurant: Restaurant;
   items: CartItem[];
 }
+export interface PaymentSheetApiData {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+}

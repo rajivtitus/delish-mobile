@@ -1,6 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { STRIPE_API_KEY } from "@env";
 
 import { HomeTabParamList, HomeTabScreenProps } from "../ts/types/navigation";
 import { Theme } from "../ts/types/theme";
@@ -48,17 +50,22 @@ const AppNavigator = () => {
     <FavouritesProvider>
       <LocationProvider>
         <RestaurantsProvider>
-          <CheckoutProvider>
-            <Tab.Navigator
-              screenOptions={(props) => screenOptions({ ...props, theme })}
-              initialRouteName="Restaurants"
-            >
-              <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Cart" component={CartScreen} />
-              <Tab.Screen name="Settings" component={SettingsNavigator} />
-            </Tab.Navigator>
-          </CheckoutProvider>
+          <StripeProvider publishableKey={STRIPE_API_KEY}>
+            <CheckoutProvider>
+              <Tab.Navigator
+                screenOptions={(props) => screenOptions({ ...props, theme })}
+                initialRouteName="Restaurants"
+              >
+                <Tab.Screen
+                  name="Restaurants"
+                  component={RestaurantsNavigator}
+                />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Cart" component={CartScreen} />
+                <Tab.Screen name="Settings" component={SettingsNavigator} />
+              </Tab.Navigator>
+            </CheckoutProvider>
+          </StripeProvider>
         </RestaurantsProvider>
       </LocationProvider>
     </FavouritesProvider>

@@ -14,7 +14,8 @@ import Quantity from "../../components/Quantity";
 import RestaurantCard from "../../components/restaurants/RestaurantCard";
 
 const CartScreen = () => {
-  const { cart, addToCart, removeFromCart, clearCart } = useCheckoutContext();
+  const { cart, addToCart, removeFromCart, clearCart, checkout, isLoading } =
+    useCheckoutContext();
   const cartTotal = cart?.items && calcCartTotal(cart.items);
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
@@ -56,7 +57,14 @@ const CartScreen = () => {
               Total: ${cartTotal?.toFixed(2)}
             </Typography>
             <View style={styles.buttonContainer}>
-              <Button mode="contained" icon="cart" style={styles.button}>
+              <Button
+                mode="contained"
+                icon="cart"
+                loading={isLoading}
+                disabled={isLoading}
+                onPress={() => cartTotal && checkout(cartTotal)}
+                style={styles.button}
+              >
                 Checkout
               </Button>
               <Spacer position="bottom" size="lg" />
