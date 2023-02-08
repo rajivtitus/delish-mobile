@@ -1,16 +1,20 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { STRIPE_API_KEY } from "@env";
 
 import { HomeTabParamList, HomeTabScreenProps } from "../ts/types/navigation";
 import { Theme } from "../ts/types/theme";
 import { RestaurantsProvider } from "../../src/services/context/RestaurantsContext";
 import { LocationProvider } from "../../src/services/context/LocationContext";
 import { FavouritesProvider } from "../../src/services/context/FavouritesContext";
+import { CheckoutProvider } from "../services/context/CheckoutContext";
 import { useTheme } from "react-native-paper";
 import RestaurantsNavigator from "./RestaurantsNavigator";
 import MapScreen from "../screens/map/MapScreen";
 import SettingsNavigator from "./SettingsNavigator";
+import CheckoutNavigator from "./CheckoutNavigator";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 
@@ -18,11 +22,12 @@ type ScreenOptionsProps = HomeTabScreenProps & {
   theme: Theme;
 };
 
-const Tab = createBottomTabNavigator<HomeTabParamList>();
+const { Navigator, Screen } = createBottomTabNavigator<HomeTabParamList>();
 
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
+  Cart: "md-cart",
   Settings: "md-settings",
 };
 
@@ -45,14 +50,19 @@ const AppNavigator = () => {
     <FavouritesProvider>
       <LocationProvider>
         <RestaurantsProvider>
-          <Tab.Navigator
-            screenOptions={(props) => screenOptions({ ...props, theme })}
-            initialRouteName="Restaurants"
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsNavigator} />
-          </Tab.Navigator>
+          <StripeProvider publishableKey={STRIPE_API_KEY}>
+            <CheckoutProvider>
+              <Navigator
+                screenOptions={(props) => screenOptions({ ...props, theme })}
+                initialRouteName="Restaurants"
+              >
+                <Screen name="Restaurants" component={RestaurantsNavigator} />
+                <Screen name="Map" component={MapScreen} />
+                <Screen name="Cart" component={CheckoutNavigator} />
+                <Screen name="Settings" component={SettingsNavigator} />
+              </Navigator>
+            </CheckoutProvider>
+          </StripeProvider>
         </RestaurantsProvider>
       </LocationProvider>
     </FavouritesProvider>

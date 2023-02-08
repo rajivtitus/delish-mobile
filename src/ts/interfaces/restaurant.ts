@@ -16,6 +16,7 @@ export interface Restaurant {
   types: string[];
   userRatingsTotal: number;
   vicinity: string;
+  menu: Menu;
 
   //custom props added after receiving data from api
   address: string;
@@ -29,4 +30,17 @@ export interface PlusCode {
 }
 export interface OpeningHours {
   openNow: boolean;
+}
+
+export interface Menu {
+  breakfast: MenuItem[];
+  lunch: MenuItem[];
+  dinner: MenuItem[];
+  drinks: MenuItem[];
+}
+
+export interface MenuItem {
+  id: number;
+  name: string;
+  price: number;
 }

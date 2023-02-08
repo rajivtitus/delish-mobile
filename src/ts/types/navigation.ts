@@ -6,9 +6,10 @@ import { Restaurant } from "../interfaces/restaurant";
 export type HomeTabParamList = {
   Restaurants: undefined;
   Map: undefined;
+  Cart: undefined;
   Settings: undefined;
 };
-export type HomeTabParam = "Restaurants" | "Map" | "Settings";
+export type HomeTabParam = "Restaurants" | "Map" | "Cart" | "Settings";
 export type HomeTabScreenProps = BottomTabScreenProps<
   HomeTabParamList,
   HomeTabParam
@@ -47,4 +48,18 @@ export type SettingsStackParam = "Account Settings" | "Favourites" | "Camera";
 export type SettingsStackNavigationProps = StackNavigationProp<
   SettingsStackParamList,
   SettingsStackParam
+>;
+
+export type CheckoutStackParamList = {
+  "Cart Details": undefined;
+  "Checkout Status"?: { error: string };
+};
+export type CheckoutStackParam = "Cart Details" | "Checkout Status";
+export type CheckoutStackScreenProps = StackScreenProps<
+  CheckoutStackParamList,
+  CheckoutStackParam
+>;
+export type CheckoutStackNavigationProps = StackNavigationProp<
+  CheckoutStackParamList,
+  CheckoutStackParam
 >;

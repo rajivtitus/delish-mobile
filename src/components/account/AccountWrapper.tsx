@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from "react";
+import React, { useState, ReactNode } from "react";
 import { StyleSheet, ImageBackground, Image, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
@@ -8,10 +8,12 @@ import Spacer from "../Spacer";
 import Typography from "../Typography";
 
 const home = require("../../../assets/images/home.jpg");
+const logo = require("../../../assets/icons/icon.png");
 const homeUri = Image.resolveAssetSource(home).uri;
+const logoUri = Image.resolveAssetSource(logo).uri;
 
 interface Props {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 }
 
 const AccountWrapper = ({ children }: Props) => {
@@ -29,8 +31,14 @@ const AccountWrapper = ({ children }: Props) => {
       >
         <View style={styles.overlay} />
         {isImageLoaded ? (
-          <FadeInView duration={500}>
-            <Spacer position="bottom" size="xl">
+          <FadeInView>
+            <Spacer position="bottom" size="lg" style={styles.header}>
+              <Image
+                resizeMode="contain"
+                source={{ uri: logoUri }}
+                style={styles.logo}
+              />
+              <Spacer position="left" size="sm" />
               <Typography variant="title" style={styles.title}>
                 Delish
               </Typography>
@@ -62,10 +70,17 @@ const makeStyles = (theme: Theme) =>
       width: "100%",
       backgroundColor: "rgba(255,255,255,0.25)",
     },
+    header: {
+      flexDirection: "row",
+      justifyContent: "center",
+    },
+    logo: {
+      width: 42,
+      height: 42,
+    },
     title: {
       fontSize: 42,
       color: theme.colors.primary,
-      textAlign: "center",
     },
     formContainer: {
       maxWidth: 325,

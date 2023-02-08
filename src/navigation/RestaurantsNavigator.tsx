@@ -1,33 +1,26 @@
 import React from "react";
-import {
-  createStackNavigator,
-  TransitionPresets,
-} from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import { RestaurantsStackParamList } from "../ts/types/navigation";
 import RestaurantsScreen from "../screens/restaurants/RestaurantsScreen";
 import RestaurantDetailsScreen from "../screens/restaurants/RestaurantDetailsScreen";
 
-const Stack = createStackNavigator<RestaurantsStackParamList>();
+const { Navigator, Screen } = createStackNavigator<RestaurantsStackParamList>();
 
 const RestaurantsNavigator = () => {
   return (
-    <Stack.Navigator
+    <Navigator
       screenOptions={{
-        ...TransitionPresets.ModalSlideFromBottomIOS,
         headerMode: "screen",
       }}
     >
-      <Stack.Screen
+      <Screen
         name="Restaurants List"
         component={RestaurantsScreen}
         options={{ header: () => null, title: "" }}
       />
-      <Stack.Screen
-        name="Restaurant Details"
-        component={RestaurantDetailsScreen}
-      />
-    </Stack.Navigator>
+      <Screen name="Restaurant Details" component={RestaurantDetailsScreen} />
+    </Navigator>
   );
 };
 

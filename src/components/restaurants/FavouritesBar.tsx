@@ -2,13 +2,13 @@ import React from "react";
 import { Divider, useTheme } from "react-native-paper";
 import { StyleSheet, ScrollView, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { RestaurantsStackNavigationProps } from "../ts/types/navigation";
+import { RestaurantsStackNavigationProps } from "../../ts/types/navigation";
 
-import { Theme } from "../ts/types/theme";
-import { Restaurant } from "../ts/interfaces/restaurant";
-import Typography from "./Typography";
-import Spacer from "./Spacer";
-import RestaurantCompactCard from "./RestaurantCompactCard";
+import { Theme } from "../../ts/types/theme";
+import { Restaurant } from "../../ts/interfaces/restaurant";
+import Typography from "../Typography";
+import Spacer from "../Spacer";
+import RestaurantCompactCard from "../RestaurantCompactCard";
 
 interface Props {
   favourites: Restaurant[];

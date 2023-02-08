@@ -7,15 +7,17 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Theme } from "../../ts/types/theme";
 import { RestaurantsStackScreenProps } from "../../ts/types/navigation";
 import Layout from "../../components/Layout";
-import RestaurantCard from "../../components/restaurants/RestaurantCard";
+import Spacer from "../../components/Spacer";
 import AlternateText from "../../components/AlternateText";
+import RestaurantCard from "../../components/restaurants/RestaurantCard";
+import MenuItem from "../../components/restaurants/MenuItem";
 
 const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
-  const restaurant = route.params?.restaurant;
   const [isBreakfastOpen, setIsBreakfastOpen] = useState<boolean>(false);
   const [isLunchOpen, setIsLunchOpen] = useState<boolean>(false);
   const [isDinnerOpen, setIsDinnerOpen] = useState<boolean>(false);
   const [isDrinksOpen, setIsDrinksOpen] = useState<boolean>(false);
+  const restaurant = route.params?.restaurant;
   const theme = useTheme<Theme>();
   const styles = makeStyles(theme);
 
@@ -23,8 +25,8 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
     <Layout>
       {restaurant ? (
         <>
-          <RestaurantCard restaurant={restaurant} />
           <ScrollView>
+            <RestaurantCard restaurant={restaurant} />
             <List.Accordion
               title="Breakfast"
               left={(props) => <List.Icon {...props} icon="bread-slice" />}
@@ -36,9 +38,19 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               }
               style={styles.accordion}
             >
-              <List.Item title="Eggs Benedict" />
-              <List.Item title="Classic Breakfast" />
+              <Spacer position="bottom" size="md" />
+              {restaurant.menu.breakfast.map((item) => (
+                <Spacer
+                  key={item.id}
+                  position="bottom"
+                  size="xl"
+                  style={styles.menuItem}
+                >
+                  <MenuItem restaurant={restaurant} item={item} />
+                </Spacer>
+              ))}
             </List.Accordion>
+
             <List.Accordion
               title="Lunch"
               left={(props) => <List.Icon {...props} icon="hamburger" />}
@@ -48,10 +60,19 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               }
               style={styles.accordion}
             >
-              <List.Item title="Burger w/ Fries" />
-              <List.Item title="Steak Sandwich" />
-              <List.Item title="Mushroom Soup" />
+              <Spacer position="bottom" size="md" />
+              {restaurant.menu.lunch.map((item) => (
+                <Spacer
+                  key={item.id}
+                  position="bottom"
+                  size="xl"
+                  style={styles.menuItem}
+                >
+                  <MenuItem restaurant={restaurant} item={item} />
+                </Spacer>
+              ))}
             </List.Accordion>
+
             <List.Accordion
               title="Dinner"
               left={(props) => <List.Icon {...props} icon="food-variant" />}
@@ -61,10 +82,19 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               }
               style={styles.accordion}
             >
-              <List.Item title="Spaghetti Bolognese" />
-              <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
-              <List.Item title="Steak Frites" />
+              <Spacer position="bottom" size="md" />
+              {restaurant.menu.dinner.map((item) => (
+                <Spacer
+                  key={item.id}
+                  position="bottom"
+                  size="xl"
+                  style={styles.menuItem}
+                >
+                  <MenuItem restaurant={restaurant} item={item} />
+                </Spacer>
+              ))}
             </List.Accordion>
+
             <List.Accordion
               title="Drinks"
               left={(props) => <List.Icon {...props} icon="cup" />}
@@ -74,16 +104,22 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
               }
               style={styles.accordion}
             >
-              <List.Item title="Coffee" />
-              <List.Item title="Tea" />
-              <List.Item title="Modelo" />
-              <List.Item title="Coke" />
-              <List.Item title="Fanta" />
+              <Spacer position="bottom" size="md" />
+              {restaurant.menu.drinks.map((item) => (
+                <Spacer
+                  key={item.id}
+                  position="bottom"
+                  size="xl"
+                  style={styles.menuItem}
+                >
+                  <MenuItem restaurant={restaurant} item={item} />
+                </Spacer>
+              ))}
             </List.Accordion>
           </ScrollView>
         </>
       ) : (
-        <AlternateText title="Restaurant Details Unavailable" />
+        <AlternateText title="Restaurant details unavailable" />
       )}
     </Layout>
   );
@@ -92,15 +128,15 @@ const RestaurantDetailsScreen = ({ route }: RestaurantsStackScreenProps) => {
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     accordion: {
-      paddingHorizontal: theme.spacing.xl,
+      paddingHorizontal: theme.spacing.lg,
       backgroundColor: theme.colors.bg.primary,
-    },
-    backButton: {
-      borderRadius: 5,
-      alignItems: "flex-start",
     },
     mediumText: {
       fontSize: theme.fontSizes.subtitle,
+    },
+    menuItem: {
+      paddingRight: theme.spacing.xl,
+      paddingLeft: theme.spacing.xl,
     },
   });
 

@@ -5,18 +5,18 @@ import { AccountStackParamList } from "../ts/types/navigation";
 import LoginScreen from "../screens/account/LoginScreen";
 import RegisterScreen from "../screens/account/RegisterScreen";
 
-const Stack = createStackNavigator<AccountStackParamList>();
+const { Navigator, Screen } = createStackNavigator<AccountStackParamList>();
 
 const AccountNavigator = () => {
   return (
-    <Stack.Navigator
+    <Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-    </Stack.Navigator>
+      <Screen name="Login" component={LoginScreen} />
+      <Screen name="Register" component={RegisterScreen} />
+    </Navigator>
   );
 };
 

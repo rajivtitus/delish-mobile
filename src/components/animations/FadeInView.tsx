@@ -1,13 +1,13 @@
-import React, { useRef, ReactElement, useEffect } from "react";
+import React, { useRef, useEffect, ReactNode } from "react";
 import { Animated } from "react-native";
 
 interface Props {
   duration?: number;
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
   style?: {};
 }
 
-const FadeInView = ({ duration = 1000, children, style }: Props) => {
+const FadeInView = ({ duration = 500, children, style }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {

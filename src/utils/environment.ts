@@ -5,7 +5,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
 export const getUrl = (endpoint: string) => {
   let url = "";
   if (isDevelopment) {
-    url = `${FIREBASE_LOCAL_URL}${endpoint}&mock=true`;
+    url = `${FIREBASE_LOCAL_URL}${endpoint}`;
   } else {
     url = `${FIREBASE_LIVE_URL}${endpoint}`;
   }
