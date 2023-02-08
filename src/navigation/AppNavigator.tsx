@@ -22,7 +22,7 @@ type ScreenOptionsProps = HomeTabScreenProps & {
   theme: Theme;
 };
 
-const Tab = createBottomTabNavigator<HomeTabParamList>();
+const { Navigator, Screen } = createBottomTabNavigator<HomeTabParamList>();
 
 const TAB_ICON = {
   Restaurants: "md-restaurant",
@@ -52,18 +52,15 @@ const AppNavigator = () => {
         <RestaurantsProvider>
           <StripeProvider publishableKey={STRIPE_API_KEY}>
             <CheckoutProvider>
-              <Tab.Navigator
+              <Navigator
                 screenOptions={(props) => screenOptions({ ...props, theme })}
                 initialRouteName="Restaurants"
               >
-                <Tab.Screen
-                  name="Restaurants"
-                  component={RestaurantsNavigator}
-                />
-                <Tab.Screen name="Map" component={MapScreen} />
-                <Tab.Screen name="Cart" component={CartScreen} />
-                <Tab.Screen name="Settings" component={SettingsNavigator} />
-              </Tab.Navigator>
+                <Screen name="Restaurants" component={RestaurantsNavigator} />
+                <Screen name="Map" component={MapScreen} />
+                <Screen name="Cart" component={CartScreen} />
+                <Screen name="Settings" component={SettingsNavigator} />
+              </Navigator>
             </CheckoutProvider>
           </StripeProvider>
         </RestaurantsProvider>

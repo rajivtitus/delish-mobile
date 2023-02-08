@@ -6,23 +6,23 @@ import SettingsScreen from "../screens/settings/SettingsScreen";
 import FavouritesScreen from "../screens/settings/FavouritesScreen";
 import CameraScreen from "../screens/settings/CameraScreen";
 
-const Stack = createStackNavigator<SettingsStackParamList>();
+const { Navigator, Screen } = createStackNavigator<SettingsStackParamList>();
 
 const SettingsNavigator = () => {
   return (
-    <Stack.Navigator
+    <Navigator
       screenOptions={{
         headerMode: "screen",
       }}
     >
-      <Stack.Screen
+      <Screen
         name="Account Settings"
         component={SettingsScreen}
         options={{ header: () => null, title: "Settings" }}
       />
-      <Stack.Screen name="Favourites" component={FavouritesScreen} />
-      <Stack.Screen name="Camera" component={CameraScreen} />
-    </Stack.Navigator>
+      <Screen name="Favourites" component={FavouritesScreen} />
+      <Screen name="Camera" component={CameraScreen} />
+    </Navigator>
   );
 };
 
