@@ -77,7 +77,7 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
   };
 
   const removeFromCart = (menuItemId: number) => {
-    if (currRestaurant && (cart.length && cart[0].quantity) === 1) {
+    if (currRestaurant && cart.length === 1 && cart[0].quantity === 1) {
       setCurrRestaurant(null);
       setCart([]);
       return;
