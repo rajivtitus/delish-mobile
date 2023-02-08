@@ -1,5 +1,11 @@
 import React from "react";
-import { FlatList, View, ListRenderItem, StyleSheet } from "react-native";
+import {
+  FlatList,
+  View,
+  ListRenderItem,
+  StyleSheet,
+  StatusBar,
+} from "react-native";
 import { Divider, useTheme } from "react-native-paper";
 
 import { useRestaurantsContext } from "../../services/context/RestaurantsContext";
@@ -37,7 +43,7 @@ const RestaurantsScreen = (): JSX.Element => {
 
   if (isLoading) {
     return (
-      <Layout>
+      <Layout style={styles.container}>
         <Search />
         <Loading />
       </Layout>
@@ -45,7 +51,7 @@ const RestaurantsScreen = (): JSX.Element => {
   }
 
   return (
-    <Layout>
+    <Layout style={styles.container}>
       <Search />
       {restaurants.length && !locationError && !restaurantsError ? (
         <FlatList
@@ -76,6 +82,10 @@ const RestaurantsScreen = (): JSX.Element => {
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
+    //padding for android devices
+    container: {
+      paddingTop: StatusBar.currentHeight ?? 0,
+    },
     textContainer: {
       flex: 1,
       padding: theme.spacing.lg,

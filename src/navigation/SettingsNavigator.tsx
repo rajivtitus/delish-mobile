@@ -5,6 +5,7 @@ import { SettingsStackParamList } from "../ts/types/navigation";
 import SettingsScreen from "../screens/settings/SettingsScreen";
 import FavouritesScreen from "../screens/settings/FavouritesScreen";
 import CameraScreen from "../screens/settings/CameraScreen";
+import { headerStyles } from "../themes/styles";
 
 const { Navigator, Screen } = createStackNavigator<SettingsStackParamList>();
 
@@ -20,7 +21,13 @@ const SettingsNavigator = () => {
         component={SettingsScreen}
         options={{ header: () => null, title: "Settings" }}
       />
-      <Screen name="Favourites" component={FavouritesScreen} />
+      <Screen
+        name="Favourites"
+        component={FavouritesScreen}
+        options={{
+          headerStyle: headerStyles,
+        }}
+      />
       <Screen name="Camera" component={CameraScreen} />
     </Navigator>
   );
