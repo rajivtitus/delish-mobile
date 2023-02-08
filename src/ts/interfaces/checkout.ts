@@ -6,6 +6,4 @@ export interface CartItem extends MenuItem {
 
 export interface PaymentSheetApiData {
   paymentIntent: string;
-  ephemeralKey: string;
-  customer: string;
 }

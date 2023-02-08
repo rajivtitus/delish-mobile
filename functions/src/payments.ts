@@ -19,21 +19,13 @@ export const createPaymentSheet = async (
   }
 
   try {
-    const customer = await stripe.customers.create();
-    const ephemeralKey = await stripe.ephemeralKeys.create(
-      { customer: customer.id },
-      { apiVersion: "2022-11-15" }
-    );
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount * 100,
       currency: "cad",
-      customer: customer.id,
     });
 
     response.json({
       paymentIntent: paymentIntent.client_secret,
-      ephemeralKey: ephemeralKey.secret,
-      customer: customer.id,
     });
   } catch (err) {
     response.status(400);

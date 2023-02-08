@@ -66,7 +66,7 @@ const CartScreen = () => {
             <View style={styles.buttonContainer}>
               <Button
                 mode="contained"
-                icon="cart"
+                icon="credit-card-outline"
                 loading={isLoading}
                 disabled={isLoading}
                 onPress={() => cartTotal && checkout(cartTotal)}
@@ -77,7 +77,7 @@ const CartScreen = () => {
               <Spacer position="bottom" size="lg" />
               <Button
                 mode="outlined"
-                icon="close"
+                icon="cart-off"
                 onPress={clearCart}
                 style={styles.button}
               >

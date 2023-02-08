@@ -107,8 +107,6 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
       .then((res) => {
         return initPaymentSheet({
           merchantDisplayName: "Delish",
-          customerId: res.customer,
-          customerEphemeralKeySecret: res.ephemeralKey,
           paymentIntentClientSecret: res.paymentIntent,
         });
       })
@@ -117,7 +115,6 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
         if (res.error) {
           throw Error("Payment failed, please try again later!");
         } else {
-          console.log("Payment Successfull");
           setCart([]);
           setCurrRestaurant(null);
         }
