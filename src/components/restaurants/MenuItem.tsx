@@ -55,6 +55,7 @@ const makeStyles = (theme: Theme) =>
     container: {
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
     },
     button: {
       borderRadius: 5,
