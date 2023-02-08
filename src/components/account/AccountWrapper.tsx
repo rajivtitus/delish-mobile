@@ -29,7 +29,7 @@ const AccountWrapper = ({ children }: Props) => {
       >
         <View style={styles.overlay} />
         {isImageLoaded ? (
-          <FadeInView duration={500}>
+          <FadeInView>
             <Spacer position="bottom" size="xl">
               <Typography variant="title" style={styles.title}>
                 Delish

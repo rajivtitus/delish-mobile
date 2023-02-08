@@ -7,7 +7,7 @@ interface Props {
   style?: {};
 }
 
-const FadeInView = ({ duration = 1000, children, style }: Props) => {
+const FadeInView = ({ duration = 500, children, style }: Props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
