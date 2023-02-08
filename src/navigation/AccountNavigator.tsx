@@ -13,6 +13,7 @@ const AccountNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Login"
     >
       <Screen name="Login" component={LoginScreen} />
       <Screen name="Register" component={RegisterScreen} />

@@ -6,11 +6,15 @@ import {
   Lato_400Regular,
   Lato_700Bold,
 } from "@expo-google-fonts/lato";
+import { LogBox } from "react-native";
 
 import "./src/utils/firebase";
 import theme from "./src/themes/theme";
 import { AuthProvider } from "./src/services/context/AuthContext";
 import RootNavigator from "./src/navigation/RootNavigator";
+
+// New version of React Native has some warnings
+LogBox.ignoreLogs(["new NativeEventEmitter"]);
 
 export default function App(): JSX.Element | null {
   const [fontsLoaded] = useFonts({

@@ -57,7 +57,7 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
     }
 
     if (currRestaurant.placeId !== restaurant.placeId) {
-      console.log("You already have an order from another restaurant");
+      alert("Please clear cart before adding an item from another restaurant"); // eslint-disable-line no-alert
       return;
     }
 

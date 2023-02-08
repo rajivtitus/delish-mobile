@@ -14,6 +14,7 @@ const RestaurantsNavigator = () => {
       screenOptions={{
         headerMode: "screen",
       }}
+      initialRouteName="Restaurants List"
     >
       <Screen
         name="Restaurants List"

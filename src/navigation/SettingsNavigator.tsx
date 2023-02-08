@@ -15,6 +15,7 @@ const SettingsNavigator = () => {
       screenOptions={{
         headerMode: "screen",
       }}
+      initialRouteName="Account Settings"
     >
       <Screen
         name="Account Settings"
