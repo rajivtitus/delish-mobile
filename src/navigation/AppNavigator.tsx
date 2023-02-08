@@ -14,7 +14,7 @@ import { useTheme } from "react-native-paper";
 import RestaurantsNavigator from "./RestaurantsNavigator";
 import MapScreen from "../screens/map/MapScreen";
 import SettingsNavigator from "./SettingsNavigator";
-import CartScreen from "../screens/checkout/CartScreen";
+import CheckoutNavigator from "./CheckoutNavigator";
 
 type Icon = "md-restaurant" | "md-map" | "md-settings";
 
@@ -58,7 +58,7 @@ const AppNavigator = () => {
               >
                 <Screen name="Restaurants" component={RestaurantsNavigator} />
                 <Screen name="Map" component={MapScreen} />
-                <Screen name="Cart" component={CartScreen} />
+                <Screen name="Cart" component={CheckoutNavigator} />
                 <Screen name="Settings" component={SettingsNavigator} />
               </Navigator>
             </CheckoutProvider>

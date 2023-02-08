@@ -49,3 +49,17 @@ export type SettingsStackNavigationProps = StackNavigationProp<
   SettingsStackParamList,
   SettingsStackParam
 >;
+
+export type CheckoutStackParamList = {
+  "Cart Details": undefined;
+  "Checkout Status"?: { error: string };
+};
+export type CheckoutStackParam = "Cart Details" | "Checkout Status";
+export type CheckoutStackScreenProps = StackScreenProps<
+  CheckoutStackParamList,
+  CheckoutStackParam
+>;
+export type CheckoutStackNavigationProps = StackNavigationProp<
+  CheckoutStackParamList,
+  CheckoutStackParam
+>;

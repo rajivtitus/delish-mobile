@@ -1,9 +1,11 @@
 import React, { ReactNode, useState } from "react";
 import { useContext, createContext } from "react";
 import { useStripe } from "@stripe/stripe-react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { MenuItem, Restaurant } from "../../ts/interfaces/restaurant";
 import { CartItem } from "../../ts/interfaces/checkout";
+import { CheckoutStackNavigationProps } from "../../ts/types/navigation";
 import { paymentSheetParamsRequest } from "../api/checkout";
 
 interface CheckoutContext {
@@ -40,6 +42,7 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null | undefined>(null);
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
+  const navigation = useNavigation<CheckoutStackNavigationProps>();
 
   const addToCart = (
     restaurant: Restaurant,
@@ -113,13 +116,17 @@ export const CheckoutProvider = ({ children }: Props): JSX.Element => {
       .then(() => presentPaymentSheet())
       .then((res) => {
         if (res.error) {
-          throw Error("Payment failed, please try again later!");
+          navigation.navigate("Checkout Status", { error: res.error.message });
         } else {
           setCart([]);
           setCurrRestaurant(null);
+          navigation.navigate("Checkout Status");
         }
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => {
+        setError(err.message);
+        navigation.navigate("Checkout Status", { error: err.message });
+      })
       .finally(() => setIsLoading(false));
   };
 
