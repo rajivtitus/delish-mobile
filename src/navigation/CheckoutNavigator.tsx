@@ -22,7 +22,7 @@ const CheckoutNavigator = () => {
       <Screen
         name="Checkout Status"
         component={CheckoutStatusScreen}
-        options={{ header: () => null, title: "" }}
+        options={{ title: "" }}
       />
     </Navigator>
   );
