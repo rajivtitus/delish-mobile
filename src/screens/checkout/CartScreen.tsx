@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, StatusBar } from "react-native";
 import { Avatar, Button, Divider, useTheme } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -28,7 +28,7 @@ const CartScreen = () => {
   const styles = makeStyles(theme);
 
   return (
-    <Layout>
+    <Layout style={styles.container}>
       {currRestaurant && cart ? (
         <ScrollView contentContainerStyle={styles.scrollView}>
           <RestaurantCard restaurant={currRestaurant} />
@@ -99,6 +99,9 @@ const CartScreen = () => {
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
+    container: {
+      paddingTop: StatusBar.currentHeight ?? 0,
+    },
     scrollView: {
       flexGrow: 1,
     },

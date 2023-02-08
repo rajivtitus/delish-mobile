@@ -13,6 +13,7 @@ const CheckoutNavigator = () => {
       screenOptions={{
         headerMode: "screen",
       }}
+      initialRouteName="Cart Details"
     >
       <Screen
         name="Cart Details"

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { User } from "firebase/auth";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity, StatusBar } from "react-native";
 import { Avatar, List, ListItemProps, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { useFocusEffect } from "@react-navigation/native";
@@ -42,7 +42,7 @@ export default function SettingsScreen() {
   );
 
   return (
-    <Layout>
+    <Layout style={styles.container}>
       <View style={styles.userInfo}>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
           {profilePhoto ? (
@@ -70,6 +70,9 @@ export default function SettingsScreen() {
 
 const makeStyles = (theme: Theme) =>
   StyleSheet.create({
+    container: {
+      paddingTop: StatusBar.currentHeight ?? 0,
+    },
     userInfo: {
       alignItems: "center",
       padding: theme.spacing.lg,

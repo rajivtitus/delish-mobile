@@ -86,7 +86,7 @@ const makeStyles = (theme: Theme) =>
   StyleSheet.create({
     container: {
       height: "100%",
-      top: "74%",
+      top: "70%",
     },
     closeButton: {
       position: "absolute",
